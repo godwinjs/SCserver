@@ -9,14 +9,19 @@ app.use((req, res, next) => {
     next();
   });
 
-app.get('/url', function (req, res) {
-    console.log(req.query)
+app.get('/url?*', function (req, res) {
+  console.log(req.query)
+  res.send({'Hello World': 'world'});
+})
+app.get('/urls?*', function (req, res) {
+  console.log(req.query)
   res.send({'Hello World': 'world'});
 })
 
+const scrape = (url) => {
+    //initialized with the first webpage to visit
+  // const paginationURLsToVisit = ["https://www.site.com/"];
 
-// // initialized with the first webpage to visit
-// const paginationURLsToVisit = ["https://www.site.com/"];
 
 // async function main(maxPages = 50) {
 
@@ -80,6 +85,7 @@ app.get('/url', function (req, res) {
 
 //         process.exit(1);
 //     });
+}
 
     
 app.listen(5000)
