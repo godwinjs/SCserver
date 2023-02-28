@@ -1,91 +1,140 @@
-const axios = require("axios");
-const cheerio = require("cheerio");
+const axios = require("axios")
+const cheerio = require("cheerio")
+// const crawler = require("cheerio-crawler")
 const express = require('express')
+const readXlsxFile = require('read-excel-file/node')
+
+
+// 
 const app = express()
+
+
+
+// .xlsx
+
+
+// keywords for writer/author/sports editor/ editorial/ 
+// package that uses email addresses to get the email owner's name. 
 
 // Cors error bypass
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
     next();
-  });
+  })
+
+
 
 app.get('/url?*', function (req, res) {
+
   console.log(req.query)
-  res.send({'Hello World': 'world'});
+  const { url, fileUrl } = req.query;
+
+  let allUrls = [];
+
+  // File path.
+  // "C:\Users\godwi\Downloads\LinkSwapsSimilarSites.xlsx"
+  readXlsxFile("./LinkSwapsSimilarSites.xlsx").then((rows) => {
+    // `rows` is an array of rows
+    // each row being an array of cells.
+    rows.map((row) => {
+      // console.log(row[1])
+      allUrls.push(row[1])
+    })
+    allUrls.shift()
+    getDom(allUrls)
+
+  })
+  const crawlDom = (response) => {
+    // link[0].property, link[1].property
+    // console.log(urls[urls.length - 1])
+    let dom = response[0].data;
+    const $ = cheerio.load(dom)
+
+    // plugins
+    $.prototype.logHtml = function () {
+      console.log(this.html());
+    };
+    $.prototype.logText = function () {
+      console.log(this.text());
+    };
+
+    $('body').find('a').map((a) => {
+      let href = $('body').find('a')[a].attribs.href;
+      // console.log(href.search(/contact/i))
+      if(!(href === undefined)){
+        if(href.search(/contact/i) > -1) {
+          console.log(href)
+        }
+        if(href.search(/mailto/i) > -1){
+          console.log(href)
+        }
+        if(href.search(/author/i) > -1){
+          console.log(href)
+        }
+        if(href.search(/writer/i) > -1){
+          console.log(href)
+        }
+        if(href.search(/editor/i) > -1){
+          console.log(href)
+        }
+        if(href.search(/writing/i) > -1){
+          console.log(href)
+        }
+        if(href.search(/about/i) > -1){
+          console.log(href)
+        }
+        if(href.search(/about-us/i) > -1){
+          console.log(href)
+        }
+        if(href.search(/contact-us/i) > -1){
+          console.log(href)
+        }
+      }
+    })
+  }
+
+  const getDom = (urls) => {
+    // for url array batch processing
+    const sendCrawlRequest = (url) => {
+      return axios.get(url).catch(error => {
+        console.error('Error:', error.message)
+        console.error('Stack trace:', error.stack)
+  
+        // Retry the request
+        console.log(`Retrying request to ${url}...`)
+        return axios.get(url)
+
+      }).finally(() => {
+        console.log(url)
+      })
+    }
+    const links = urls.map((url) => {
+      return sendCrawlRequest(url)
+    })
+
+    Promise.allSettled(links).then((results) => {
+      const fulfilledResponses = results.filter(result => result.status === 'fulfilled');
+      const rejectedResponses = results.filter(result => result.status === 'rejected');
+
+      crawlDom(fulfilledResponses)
+    })
+
+  }
+
+  console.log(allUrls)
+  // axios.get(url).then(() => {
+  //   res.text()
+  // }).then((dom) => {
+  //   console.log(dom)
+  // })
+  
+  // res.send({"hello": "world"})
+
 })
+
 app.get('/urls?*', function (req, res) {
   console.log(req.query)
-  res.send({'Hello World': 'world'});
 })
-
-const scrape = (url) => {
-    //initialized with the first webpage to visit
-  // const paginationURLsToVisit = ["https://www.site.com/"];
-
-
-// async function main(maxPages = 50) {
-
-//     const visitedURLs = [];
-
-//     const productURLs = new Set();
-
-//     // iterating until the queue is empty
-//     // or the iteration limit is hit
-//     while (
-//         paginationURLsToVisit.length !== 0 &&
-//         visitedURLs.length <= maxPages
-//         ) {
-//         // the current webpage to crawl
-//         const paginationURL = paginationURLsToVisit.pop();
-
-//         // retrieving the HTML content from paginationURL
-//         const pageHTML = await axios.get(paginationURL);
-
-//         // adding the current webpage to the
-//         // web pages already crawled
-//         visitedURLs.push(paginationURL);
-
-//         // initializing cheerio on the current webpage
-//         const $ = cheerio.load(pageHTML.data);
-
-//         // retrieving the pagination URLs
-//         $(".page-numbers a").each((index, element) => {
-//             const paginationURL = $(element).attr("href");
-
-//             // adding the pagination URL to the queue
-//             // of web pages to crawl, if it wasn't yet crawled
-//             if (
-//                 !visitedURLs.includes(paginationURL) &&
-//                 !paginationURLsToVisit.includes(paginationURL)
-//             ) {
-//                 paginationURLsToVisit.push(paginationURL);
-//             }
-//         });
-
-//         // retrieving the product URLs
-//         $("li.product a.woocommerce-LoopProduct-link").each((index, element) => {
-//             const productURL = $(element).attr("href");
-//             productURLs.add(productURL);
-//         });
-//     }
-
-//     // logging the crawling results
-//     console.log([...productURLs]);
-
-//     // use productURLs for scraping purposes...
-// }
-
-// main()
-//     .then(() => {
-//         process.exit(0);
-//     })
-//     .catch((e) => {
-//         // logging the error message
-//         console.error(e);
-
-//         process.exit(1);
-//     });
-}
 
     
 app.listen(5000)
