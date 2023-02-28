@@ -33,64 +33,77 @@ app.get('/url?*', function (req, res) {
 
   // File path.
   // "C:\Users\godwi\Downloads\LinkSwapsSimilarSites.xlsx"
-  readXlsxFile("./LinkSwapsSimilarSites.xlsx").then((rows) => {
+  readXlsxFile("./LinkSwapsSimilarSites.xlsx", {sheet: 2}).then((rows) => {
     // `rows` is an array of rows
     // each row being an array of cells.
     rows.map((row) => {
       // console.log(row[1])
       allUrls.push(row[1])
     })
+    console.log(allUrls.length)
+    console.log(allUrls[allUrls.length - 1])
     allUrls.shift()
     getDom(allUrls)
 
   })
+  const crawledData = [];
+
   const crawlDom = (response) => {
     // link[0].property, link[1].property
-    // console.log(urls[urls.length - 1])
-    let dom = response[0].data;
-    const $ = cheerio.load(dom)
+    let url;
+    if(response.value.config.url === undefined){
+      url = 'bad url'
+    }else{
+      url = response.value.config.url;
+    }
 
-    // plugins
-    $.prototype.logHtml = function () {
-      console.log(this.html());
-    };
-    $.prototype.logText = function () {
-      console.log(this.text());
-    };
+      let dom = response.value.data;
+        const $ = cheerio.load(dom)
 
-    $('body').find('a').map((a) => {
-      let href = $('body').find('a')[a].attribs.href;
-      // console.log(href.search(/contact/i))
-      if(!(href === undefined)){
-        if(href.search(/contact/i) > -1) {
-          console.log(href)
-        }
-        if(href.search(/mailto/i) > -1){
-          console.log(href)
-        }
-        if(href.search(/author/i) > -1){
-          console.log(href)
-        }
-        if(href.search(/writer/i) > -1){
-          console.log(href)
-        }
-        if(href.search(/editor/i) > -1){
-          console.log(href)
-        }
-        if(href.search(/writing/i) > -1){
-          console.log(href)
-        }
-        if(href.search(/about/i) > -1){
-          console.log(href)
-        }
-        if(href.search(/about-us/i) > -1){
-          console.log(href)
-        }
-        if(href.search(/contact-us/i) > -1){
-          console.log(href)
-        }
+        // plugins
+        $.prototype.logHtml = function () {
+          console.log(this.html());
+        };
+        $.prototype.logText = function () {
+          console.log(this.text());
+        };
+
+        $('body').find('a').map((a) => {
+          let href = $('body').find('a')[a].attribs.href;
+          // console.log(href.search(/contact/i))
+          if(!(href === undefined)){
+            if(href.search(/contact/i) > -1) {
+              crawledData.push({[url]: href})
+            }
+            if(href.search(/mailto/i) > -1){
+              crawledData.push({[url]: href})
+            }
+            if(href.search(/author/i) > -1){
+              crawledData.push({[url]: href})
+            }
+            if(href.search(/writer/i) > -1){
+              crawledData.push({[url]: href})
+            }
+            if(href.search(/editor/i) > -1){
+              crawledData.push({[url]: href})
+            }
+            if(href.search(/writing/i) > -1){
+              crawledData.push({[url]: href})
+            }
+            if(href.search(/about/i) > -1){
+              crawledData.push({[url]: href})
+            }
+            if(href.search(/about-us/i) > -1){
+              crawledData.push({[url]: href})
+            }
+            if(href.search(/contact-us/i) > -1){
+              crawledData.push({[url]: href})
+            }
       }
     })
+    // promise.value.config.url
+    console.log(crawledData)
+    
   }
 
   const getDom = (urls) => {
@@ -105,7 +118,7 @@ app.get('/url?*', function (req, res) {
         return axios.get(url)
 
       }).finally(() => {
-        console.log(url)
+        // console.log(url)
       })
     }
     const links = urls.map((url) => {
@@ -116,7 +129,9 @@ app.get('/url?*', function (req, res) {
       const fulfilledResponses = results.filter(result => result.status === 'fulfilled');
       const rejectedResponses = results.filter(result => result.status === 'rejected');
 
-      crawlDom(fulfilledResponses)
+      fulfilledResponses.map((promise, index) => {
+        crawlDom(promise, index)
+      })
     })
 
   }
