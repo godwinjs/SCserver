@@ -33,7 +33,7 @@ app.get('/url?*', function (req, res) {
 
   // File path.
   // "C:\Users\godwi\Downloads\LinkSwapsSimilarSites.xlsx"
-  readXlsxFile("./LinkSwapsSimilarSites.xlsx", {sheet: 2}).then((rows) => {
+  readXlsxFile("./LinkSwapsSimilarSites.xlsx", {sheet: 3}).then((rows) => {
     // `rows` is an array of rows
     // each row being an array of cells.
     rows.map((row) => {
@@ -91,10 +91,10 @@ app.get('/url?*', function (req, res) {
               crawledData.push({[url]: href})
             }
             if(href.search(/about/i) > -1){
-              crawledData.push({[url]: href})
+              // crawledData.push({[url]: href})
             }
             if(href.search(/about-us/i) > -1){
-              crawledData.push({[url]: href})
+              // crawledData.push({[url]: href})
             }
             if(href.search(/contact-us/i) > -1){
               crawledData.push({[url]: href})
