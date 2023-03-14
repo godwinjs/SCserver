@@ -5,7 +5,8 @@
     "cheerio-crawler": "^1.1.1",
     "express": "^4.18.2",
     "nodemon": "^2.0.20",
-    "read-excel-file": "^5.6.1"
+    "read-excel-file": "^5.6.1",
+    "write-excel-file": "^1.4.24"
   },
   "scripts": {
     "start": "nodemon server.js"

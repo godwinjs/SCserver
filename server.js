@@ -3,15 +3,11 @@ const cheerio = require("cheerio")
 // const crawler = require("cheerio-crawler")
 const express = require('express')
 const readXlsxFile = require('read-excel-file/node')
+const writeXlsxFile = require('write-excel-file/node')
 
 
 // 
 const app = express()
-
-
-
-// .xlsx
-
 
 // keywords for writer/author/sports editor/ editorial/ 
 // package that uses email addresses to get the email owner's name. 
@@ -26,26 +22,138 @@ app.use((req, res, next) => {
 
 app.get('/url?*', function (req, res) {
 
-  console.log(req.query)
+  // console.log(req.query)
   const { url, fileUrl } = req.query;
 
   let allUrls = [];
+  let allRows = [];
 
   // File path.
+  // .xlsx
+const objects = []
+const schema = [
+  {
+    column: 'Domain',
+    type: String,
+    value: row => row.domain
+  },
+  {
+    column: 'URL',
+    type: String,
+    value: row => row.url
+  },
+  {
+    column: 'Page As',
+    type: Number,
+    value: row => row.pageAs
+  },
+  {
+    column: 'Ref.Domain',
+    type: Number,
+    value: row => row.refDomain
+  },
+  {
+    column: 'Backlinks',
+    type: Number,
+    value: row => row.backlinks
+  },
+  {
+    column: 'Search Traffic',
+    type: Number,
+    value: row => row.searchTraffic
+  },
+  {
+    column: 'URL Keywords',
+    type: Number,
+    value: row => row.urlKeywords
+  },
+  {
+    column: 'Name',
+    type: String,
+    value: row => row.name
+  },
+  {
+    column: 'Email',
+    type: String,
+    value: row => row.email
+  },
+  {
+    column: 'Email Verified',
+    type: Boolean,
+    value: row => row.emailVerified 
+  } 
+]
   // "C:\Users\godwi\Downloads\LinkSwapsSimilarSites.xlsx"
-  readXlsxFile("./LinkSwapsSimilarSites.xlsx", {sheet: 3}).then((rows) => {
+  async function writeToExcelFile(arr) {
+    arr.splice(0, 1)
+    arr.map((row) => {
+
+
+      objects.push({
+        domain: row[0],
+        url: row[1],
+        pageAs: row[2] === null ? 0 : row[2],
+        refDomain: row[3] === null ? 0 : row[3],
+        backlinks:  row[4] === null ? 0 : row[4],
+        searchTraffic:  row[5] === null ? 0 : row[5],
+        urlKeywords:  row[6] === null ? 0 : row[6],
+        name: row[7],
+        email: row[8],
+        emailVerified: row[9]
+      })
+
+    })
+    // console.log(objects[0])
+    // console.log(allRows[0])
+
+      await writeXlsxFile(objects, {
+        schema,
+        filePath: './link.xlsx'
+      })
+  }
+
+  readXlsxFile("./AllKeyword.xlsx", {sheet: 1}).then((rows) => {
     // `rows` is an array of rows
     // each row being an array of cells.
-    rows.map((row) => {
-      // console.log(row[1])
-      allUrls.push(row[1])
-    })
-    console.log(allUrls.length)
-    console.log(allUrls[allUrls.length - 1])
-    allUrls.shift()
-    getDom(allUrls)
+    // rows.map((row) => {
+    //   allUrls.push(row[0])
+    //   // allRows.push(row)
+    //   // console.log(row)
+    // })
+    allRows = rows;
+    // console.log(allRows)
+    allRows.map((rowCheck, idxCheck) => {        
+      let rep = 0;
 
+      allRows.map((rowAgainst, idxAgainst) => {
+
+        if(rowCheck[0] === rowAgainst[0]){
+          if(rep >= 1){
+            allRows.splice(idxAgainst, 1)
+          }
+          rep = rep + 1;
+        }
+
+      })
+    })
+    // console.log(allRows[1])
+    writeToExcelFile(allRows)
   })
+
+
+  // readXlsxFile("./LinkSwapsSimilarSites.xlsx", {sheet: 3}).then((rows) => {
+  //   // `rows` is an array of rows
+  //   // each row being an array of cells.
+  //   rows.map((row) => {
+  //     // console.log(row[1])
+  //     allUrls.push(row[1])
+  //   })
+  //   console.log(allUrls.length)
+  //   console.log(allUrls[allUrls.length - 1])
+  //   allUrls.shift()
+  //   // getDom(allUrls)
+
+  // })
   const crawledData = [];
 
   const crawlDom = (response) => {
@@ -135,15 +243,8 @@ app.get('/url?*', function (req, res) {
     })
 
   }
-
-  console.log(allUrls)
-  // axios.get(url).then(() => {
-  //   res.text()
-  // }).then((dom) => {
-  //   console.log(dom)
-  // })
   
-  // res.send({"hello": "world"})
+  res.send({"hello": "world"})
 
 })
 
