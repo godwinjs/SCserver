@@ -244,7 +244,7 @@ const schema = [
 
   }
   
-  // res.send({"hello": "world"})
+  res.send({"Success": "Operation Completed and duplicate entries have been removed! \n Enjoy your unique excel file."})
 
 })
 
