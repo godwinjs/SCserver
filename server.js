@@ -112,7 +112,7 @@ const schema = [
       })
   }
 
-  readXlsxFile("./AllKeyword.xlsx", {sheet: 1}).then((rows) => {
+  readXlsxFile("./All.xlsx", {sheet: 2}).then((rows) => {
     // `rows` is an array of rows
     // each row being an array of cells.
     // rows.map((row) => {
@@ -136,7 +136,8 @@ const schema = [
 
       })
     })
-    // console.log(allRows[1])
+    console.log(allRows.length)
+    console.log(allRows[allRows.length - 1])
     writeToExcelFile(allRows)
   })
 
@@ -253,4 +254,4 @@ app.get('/urls?*', function (req, res) {
 })
 
     
-app.listen(5000)
+app.listen(5001)
