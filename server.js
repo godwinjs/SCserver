@@ -25,7 +25,7 @@ app.get('/url?*', function (req, res) {
   // console.log(req.query)
   const { url, fileUrl } = req.query;
 
-  let allUrls = [];
+  // let allUrls = [];
   let allRows = [];
 
   // File path.
@@ -121,7 +121,7 @@ const schema = [
     //   // console.log(row)
     // })
     allRows = rows;
-    // console.log(allRows)
+    console.log(allRows.length)
     allRows.map((rowCheck, idxCheck) => {        
       let rep = 0;
 
