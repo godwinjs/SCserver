@@ -64,7 +64,7 @@ const schema = [
   },
   {
     column: 'URL Keywords',
-    type: Number,
+    type: Number || String,
     value: row => row.urlKeywords
   },
   {
