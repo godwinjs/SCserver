@@ -39,7 +39,7 @@ const schema = [
   },
   {
     column: 'URL',
-    type: String || Number,
+    type: String,
     value: row => row.url
   },
   {
@@ -64,7 +64,7 @@ const schema = [
   },
   {
     column: 'URL Keywords',
-    type: Number || String,
+    type: Number,
     value: row => row.urlKeywords
   },
   {
@@ -91,7 +91,7 @@ const schema = [
 
       objects.push({
         domain: row[0],
-        url: row[1],
+        url: row[1] + "",
         pageAs: row[2] === null ? 0 : row[2],
         refDomain: row[3] === null ? 0 : row[3],
         backlinks:  row[4] === null ? 0 : row[4],
