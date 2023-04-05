@@ -39,7 +39,7 @@ const schema = [
   },
   {
     column: 'URL',
-    type: String,
+    type: String || Number,
     value: row => row.url
   },
   {
