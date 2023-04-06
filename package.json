@@ -9,12 +9,12 @@
     "write-excel-file": "^1.4.24"
   },
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon serverCur.js"
   },
   "name": "scserver",
   "version": "1.0.0",
   "description": "Social scraper backend",
-  "main": "server.js",
+  "main": "serverCur.js",
   "author": "ogbodo godwin",
   "license": "ISC"
 }

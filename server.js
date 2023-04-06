@@ -121,20 +121,25 @@ const schema = [
     //   // console.log(row)
     // })
     allRows = rows;
+    let count = 0;
     console.log(allRows.length)
-    allRows.map((rowCheck, idxCheck) => {        
+    allRows.map((rowCheck, idxCheck) => {   
+       
       let rep = 0;
 
       allRows.map((rowAgainst, idxAgainst) => {
-
+        count = count + 1;   
         if(rowCheck[0] === rowAgainst[0]){
           if(rep >= 1){
             allRows.splice(idxAgainst, 1)
           }
           rep = rep + 1;
         }
-
+        if(allRows.length - 1 == idxCheck){
+          console.log(count)
+        }
       })
+
     })
     console.log(allRows.length)
     console.log(allRows[allRows.length - 1])
