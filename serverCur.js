@@ -25,6 +25,7 @@ app.get('/url?*', function (req, res) {
     // .xlsx    
     const sheets = [1, 2, 3, 4, 5, 6];
     let checkArr = [];
+    let againstArr = [];
     //
     const objects = []
     const schema = [
