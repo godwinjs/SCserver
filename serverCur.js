@@ -114,15 +114,13 @@ app.get('/url?*', function (req, res) {
     })
 
     Promise.all(checkPromise).then((rows) => {
-        checkArr.push(rows)
         // console.log(rows.length);
         rows.map((row, i) => {
             checkArr.push(row)
         })
     }).finally(() => {
-        console.log(checkArr.length);
+        // console.log(checkArr.length);
         checkArr.map((row, i) => {
-            console.log(i)
             console.log(row[1])
         })
     })
