@@ -121,12 +121,18 @@ app.get('/url?*', function (req, res) {
         })
     }).finally(() => {
         // console.log(checkArr.length);
-        checkArr.map((row, i) => {
-            console.log(row[1])
-        })
+        // checkArr.map((row, i) => {
+        //     console.log(row[1])
+        // })
     })
-
-
+    // var a = ['abc','defg','hi', 'hi', 'hi', 'hi', 'abc', 'defg', 'hi', 'hi', 'abc', 'abc'];
+    // var ar = a.reduce(function(prev,cur) { 
+    //     if(prev == cur){
+    //         return prev+cur;
+    //     }
+    //     }, "");
+    // console.log(ar)
+        
 
     
     res.send({"Success": "Operation Completed and duplicate entries have been removed! \n Enjoy your unique excel file."})
