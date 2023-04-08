@@ -24,7 +24,8 @@ app.get('/url?*', function (req, res) {
     // File path.
     // .xlsx    
     const sheets = [1, 2, 3, 4, 5, 6];
-    let checkArr = [];
+    let sheetArr = [];
+    var checkArr = [];
     let againstArr = [];
     //
     const objects = []
@@ -109,6 +110,23 @@ app.get('/url?*', function (req, res) {
             filePath: './link.xlsx'
         })
     }
+    function removeDuplicates(arr){
+
+        console.log(check)
+        // arr.map((curr) => {
+            
+        //     count = count + 1;   
+        //     if(rowCheck[0] === rowAgainst[0]){
+        //       if(rep >= 1){
+        //         allRows.splice(idxAgainst, 1)
+        //       }
+        //       rep = rep + 1;
+        //     }
+        //     if(allRows.length - 1 == idxCheck){
+        //       console.log(count)
+        //     }
+        //   })
+    }
     
     const checkPromise = sheets.map((sheet) => {
         return readXlsxFile("./AllKeyword.xlsx", {sheet: sheet});
@@ -117,13 +135,15 @@ app.get('/url?*', function (req, res) {
     Promise.all(checkPromise).then((rows) => {
         // console.log(rows.length);
         rows.map((row, i) => {
-            checkArr.push(row)
+            sheetArr.push(row)
         })
     }).finally(() => {
         // console.log(checkArr.length);
-        // checkArr.map((row, i) => {
-        //     console.log(row[1])
-        // })
+        sheetArr.map((row, i) => {
+            // console.log(row[1])
+            removeDuplicates(row)
+
+        })
     })
     // var a = ['abc','defg','hi', 'hi', 'hi', 'hi', 'abc', 'defg', 'hi', 'hi', 'abc', 'abc'];
     // var ar = a.reduce(function(prev,cur) { 
