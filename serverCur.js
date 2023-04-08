@@ -15,19 +15,13 @@ app.use((req, res, next) => {
     next();
   })
 
-
-
 app.get('/url?*', function (req, res) {
   
-    let allRows = [];
-
-    // File path.
-    // .xlsx    
-    const sheets = [1, 2, 3, 4, 5, 6];
+    let allRows = []; 
     let sheetArr = [];
-    var checkArr = [];
-    let againstArr = [];
+    let newSheet = null;
     //
+    const sheets = [1, 2, 3, 4, 5, 6, 7];
     const objects = []
     const schema = [
     {
@@ -110,22 +104,19 @@ app.get('/url?*', function (req, res) {
             filePath: './link.xlsx'
         })
     }
-    function removeDuplicates(arr){
+    function removeDuplicates(existingSheet, newSheet) {
+        existingSheet.shift();
 
-        console.log(check)
-        // arr.map((curr) => {
-            
-        //     count = count + 1;   
-        //     if(rowCheck[0] === rowAgainst[0]){
-        //       if(rep >= 1){
-        //         allRows.splice(idxAgainst, 1)
-        //       }
-        //       rep = rep + 1;
-        //     }
-        //     if(allRows.length - 1 == idxCheck){
-        //       console.log(count)
-        //     }
-        //   })
+        existingSheet.map((existingRow, idxExist) => {   
+      
+            newSheet.map((newRow, idxNew) => {
+                if(existingRow[0] === newRow[0]){
+                    console.log(newRow[0])
+                    newSheet.splice(idxNew, 1)
+                }
+            })
+      
+          })
     }
     
     const checkPromise = sheets.map((sheet) => {
@@ -133,34 +124,24 @@ app.get('/url?*', function (req, res) {
     })
 
     Promise.all(checkPromise).then((rows) => {
-        // console.log(rows.length);
         rows.map((row, i) => {
             sheetArr.push(row)
         })
     }).finally(() => {
-        // console.log(checkArr.length);
-        sheetArr.map((row, i) => {
-            // console.log(row[1])
-            removeDuplicates(row)
+        if(newSheet === null){
+            newSheet = sheetArr[sheetArr.length - 1]
+            sheetArr.pop();
+        }
+
+        sheetArr.map((existingSheet) => {
+            removeDuplicates(existingSheet, newSheet);
 
         })
-    })
-    // var a = ['abc','defg','hi', 'hi', 'hi', 'hi', 'abc', 'defg', 'hi', 'hi', 'abc', 'abc'];
-    // var ar = a.reduce(function(prev,cur) { 
-    //     if(prev == cur){
-    //         return prev+cur;
-    //     }
-    //     }, "");
-    // console.log(ar)
+        writeToExcelFile(newSheet);
+        console.log('map done')
+    });
         
-
-    
     res.send({"Success": "Operation Completed and duplicate entries have been removed! \n Enjoy your unique excel file."})
-    // res.send({"Success": checkArr})
-})
-
-app.get('/urls?*', function (req, res) {
-  console.log(req.query)
 })
 
     
