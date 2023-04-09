@@ -21,7 +21,7 @@ app.get('/url?*', function (req, res) {
     let sheetArr = [];
     let newSheet = null;
     //
-    const sheets = [1, 2, 3, 4, 5, 6, 7];
+    const sheets = [1, 2, 3, 4, 5, 6, 7, 8];
     const objects = []
     const schema = [
     {
@@ -137,8 +137,9 @@ app.get('/url?*', function (req, res) {
             removeDuplicates(existingSheet, newSheet);
 
         })
+        console.log('Writing unique entries to excel file...')
         writeToExcelFile(newSheet);
-        console.log('map done')
+        console.log('All done file ready.')
     });
         
     res.send({"Success": "Operation Completed and duplicate entries have been removed! \n Enjoy your unique excel file."})
