@@ -110,10 +110,20 @@ app.get('/url?*', function (req, res) {
         existingSheet.map((existingRow, idxExist) => {   
       
             newSheet.map((newRow, idxNew) => {
+                let rep = 0;
+
                 if(existingRow[0] === newRow[0]){
                     // console.log(newRow[0])
                     newSheet.splice(idxNew, 1)
                 }
+                newSheet.map((rowAgainst, idxAgainst) =>{
+                    if(newRow[0] === rowAgainst[0]){
+                        if(rep >= 1){
+                          newSheet.splice(idxAgainst, 1)
+                        }
+                        rep = rep + 1;
+                      }
+                })
             })
       
           })
@@ -130,6 +140,7 @@ app.get('/url?*', function (req, res) {
     }).finally(() => {
         if(newSheet === null){
             newSheet = sheetArr[sheetArr.length - 1]
+            console.log(newSheet.length)
             // console.log(sheetArr[sheetArr.length - 1][1])
             sheetArr.pop();
         }
@@ -138,7 +149,6 @@ app.get('/url?*', function (req, res) {
             removeDuplicates(existingSheet, newSheet);
 
         })
-        console.log(newSheet[0].length)
         console.log('Writing unique entries to excel file...')
         writeToExcelFile(newSheet);
         console.log(newSheet.length)
