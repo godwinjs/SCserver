@@ -158,5 +158,18 @@ app.get('/url?*', function (req, res) {
     res.send({"Success": "Operation Completed and duplicate entries have been removed! \n Enjoy your unique excel file."})
 })
 
+function person(first, last, age, color) {
+    this.firstname = first;
+    this.lastname = last;
+    this.age = age;
+    this.eyecolor = color;
+    this.incrementAge = changeAge;
+}
+function changeAge( ) {
+ this.age++;
+}
+
+var pl = new person('mike', 'miller', 23, 'green')
+
     
 app.listen(5001)
