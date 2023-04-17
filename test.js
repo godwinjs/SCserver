@@ -27,3 +27,23 @@ let numb = [5, 6,7]
 
 console.log(sum.apply(null, numb))//es5 => 18
 console.log(sum(...numb))//es6 => 18
+
+// parseInt(number, radix)
+//decimal
+console.log(parseInt('FF', 10));
+// hexadecimal
+console.log(parseInt('FF', 16));
+
+
+function swap(a,b){ // <--function scope starts here
+    if(a>0 && b>0){ // <--block scope starts here
+    let tmp=a;
+    a=b;
+    b=tmp;
+    } // <--block scope ends here
+    console.log(a,b);
+    // console.log(tmp); // tmp is not defined as it is available only in the block scope
+    return [a,b];
+    }
+    swap(1,2);
+   
