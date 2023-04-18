@@ -90,9 +90,9 @@ function f_clo(){
 function f_clo2() {
     var arr = [], i;
     for (i = 0; i < 3; i++) {
-        (function (i){
+        (function (x){
             arr[i] = function () {
-                return i;
+                return x;
             }
         })(i)//with closures the function gets the value of a variable at that particular time.
         //closures: passing the data of an inner scoped variable to an outer scoped function.
@@ -106,3 +106,49 @@ var arr = f_clo2().map((item) => {
 })
 
 console.log(arr)
+
+var data = function () {
+    let numbers = [0]
+    
+    return {
+        set: function (...argsNumb){
+            argsNumb.map((item) => {
+                if(typeof(item) === 'number'){
+                    numbers.push(item)
+                }
+            })
+            return numbers
+        },
+        get: function (){
+            return numbers;
+        }
+    }
+}();
+data.set(1, 2, "effewsdf", 10, 30, 40, 'ees')
+console.log(data.get())
+
+var loopArr = function(arr) {
+    var i =0;
+    return function(){
+        return arr[i++]
+    }
+}
+
+var next = loopArr([1, 2, 3, 10, 3, 81, 99])
+for(var i = 0; i < 7; i++){
+    console.log(next())
+}
+
+function h(){
+    var u = 'outer-scope'
+    function j(){
+        let tu = 'inner scope'
+
+        function ut() {
+            console.log(tu)
+        }
+        ut()
+    }
+    j(); 
+}
+h()
