@@ -10,7 +10,7 @@ function sc(param=scope){
     console.log(param)
 }
 
-sc();
+sc();//outer-scope
 
 function say(name, ...qoutes){
     console.log(`In ${name} voice, i say ${qoutes}`)
@@ -46,4 +46,63 @@ function swap(a,b){ // <--function scope starts here
     return [a,b];
     }
     swap(1,2);
+
+ var f = function myFunc() {
+    return 1;
+ }
    
+ console.log(f())
+
+
+var newFunc = function a() {
+ console.log('A!');
+ return function () {
+ console.log('B!');
+ };
+ }();
+
+ newFunc()
+
+ function a() {
+    console.log('first run!');
+    a = function () {
+        console.log('rewrite function a during second run!');
+    }()
+ }
+
+ a();
+
+//  Closures
+function f_clo(){
+    var arr = [], i;
+
+    for(i =0; i<3; i++) {
+        arr[i] = function(){
+            //functions don't have access to or stores the value of a variable,
+            // but stores the reference to that variable and gets the value ofthe variable whenever 
+            // the function is called.
+            return i;
+        }
+    }
+    return arr;
+}
+
+function f_clo2() {
+    var arr = [], i;
+    for (i = 0; i < 3; i++) {
+        (function (i){
+            arr[i] = function () {
+                return i;
+            }
+        })(i)//with closures the function gets the value of a variable at that particular time.
+        //closures: passing the data of an inner scoped variable to an outer scoped function.
+    }
+    return arr;
+}
+// calling the items in the f_clo() array will return [3, 3, 3] but expected to return [1,2 ,3]
+//but f_clo2() will return [1,2,3] as expected
+var arr = f_clo2().map((item) => {
+    return item()
+})
+
+console.log(arr)
