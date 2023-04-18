@@ -152,3 +152,43 @@ function h(){
     j(); 
 }
 h()
+
+// EXERCISE @ pg132
+// 1
+function getRGB(hex){
+    let h = hex.split(''), 
+        p = function (a, b){
+            return parseInt(a+b, 16)
+        };
+
+    return `rgb(${p(h[1], h[2])}, ${p(h[3], h[4])}, ${p(h[5], h[6])})`
+}
+console.log(getRGB('#0000ff'))
+
+// 2
+
+// 3 ans=2
+var a3 = 1;
+ function f3() {
+ function n3() {
+    console.log(a3);
+ }
+ var a3 = 2;
+ n3();
+ }
+ f3()
+
+// 4: All these following examples alert "Boo!". Can you explain why?
+var f = console.log;
+ eval('f("Boo!")');
+ //
+ var e;
+ var f = console.log;
+ eval('e=f')('Boo!');
+ //
+ (function(){
+    return console.log;}
+    )()('Boo!');
+
+// 5:
+
