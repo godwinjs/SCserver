@@ -142,10 +142,10 @@ for(var i = 0; i < 7; i++){
 function h(){
     var u = 'outer-scope'
     function j(){
-        let tu = 'inner scope'
+        let u = 'inner scope'
 
         function ut() {
-            console.log(tu)
+            console.log(u)
         }
         ut()
     }
