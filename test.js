@@ -192,3 +192,9 @@ var f = console.log;
 
 // 5:
 
+// OOP
+var oo = {}
+oo.fname = 'scott';
+oo.lname = 'lang'
+delete oo.fname;
+console.log(oo)
