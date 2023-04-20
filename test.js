@@ -198,3 +198,23 @@ oo.fname = 'scott';
 oo.lname = 'lang'
 delete oo.fname;
 console.log(oo)
+class Hero {
+    constructor(name) {
+        this.name = name
+        this.occupation = 'Ninja'
+        this.whoAreYou = function () {
+            return "I'm " +
+                this.name + " and I'm a " + this.occupation
+        }
+    }
+}
+
+    var ha = new Hero('Leonardo');
+
+    console.log(typeof(ha) ) 
+
+
+
+
+
+
