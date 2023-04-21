@@ -5,8 +5,8 @@ const express = require('express')
 const readXlsxFile = require('read-excel-file/node')
 const writeXlsxFile = require('write-excel-file/node')
 
-const http = require('https'); // or 'https' for https:// URLs
-const fs = require('fs');
+// const http = require('https'); // or 'https' for https:// URLs
+// const fs = require('fs');
 
 // var download = function(url, dest, cb) {
 //     var file = fs.createWriteStream(dest);
@@ -39,6 +39,9 @@ app.get('/url', function (req, res) {
         const sheets = [1, 2];
         const spouseObjects = []
         const ordinaryObjects = []
+
+      
+        // console.log(queryObject.sport);
 
     
         // "C:\Users\godwi\Downloads\LinkSwapsSimilarSites.xlsx"
@@ -181,7 +184,7 @@ app.get('/url', function (req, res) {
                         if(b_row[1] == null){
                             return;
                         }
-                        b_row[2] = b_row[2] + '(Swimming)'
+                        b_row[2] = b_row[2] + `(${req.query.sport})`
                     }
                 })
             })
@@ -191,7 +194,7 @@ app.get('/url', function (req, res) {
     
                 b.map((b_row) => {
                     if(stringsMatch(a_row[1], b_row[0])){
-                        b_row[2] = b_row[2] + '(Swimming)'
+                        b_row[2] = b_row[2] + `(${req.query.sport})`
                     }
                 })
             })
@@ -208,14 +211,13 @@ app.get('/url', function (req, res) {
             })
         }).finally(() => {
     
-            // removeHeader(sheetArr[0], sheetArr[1]);
+            removeHeader(sheetArr[0], sheetArr[1]);
             if(req.query.member === 's'){
                 spouse(sheetArr[0], sheetArr[1])
             }else{
                 ordinary(sheetArr[0], sheetArr[1])
             }
             // 
-            console.log(req.query.member)
             console.log('Writing unique entries to excel file...')
             writeToExcelFile(sheetArr[1]);
             console.log('All done file ready.')
@@ -223,7 +225,7 @@ app.get('/url', function (req, res) {
         
     res.send({
         "Success": "Operation Completed and duplicate entries have been removed! \n Enjoy your unique excel file.",
-        "request": req.query
+        "arguments": req.query
     })
 })
 
