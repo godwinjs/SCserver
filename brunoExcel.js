@@ -24,83 +24,69 @@ app.get('/url?*', function (req, res) {
     const objects = []
     const schema = [
     {
-        column: 'Domain',
+        column: 'MEMBER ID',
         type: String,
-        value: row => row.domain
+        value: row => row.memberId
     },
     {
-        column: 'URL',
+        column: 'SURNAME',
         type: String,
-        value: row => row.url
+        value: row => row.surname
     },
     {
-        column: 'Page As',
-        type: Number,
-        value: row => row.pageAs
-    },
-    {
-        column: 'Ref.Domain',
-        type: Number,
-        value: row => row.refDomain
-    },
-    {
-        column: 'Backlinks',
-        type: Number,
-        value: row => row.backlinks
-    },
-    {
-        column: 'Search Traffic',
-        type: Number,
-        value: row => row.searchTraffic
-    },
-    {
-        column: 'URL Keywords',
-        type: Number,
-        value: row => row.urlKeywords
-    },
-    {
-        column: 'Name',
+        column: 'FIRSTNAME',
         type: String,
-        value: row => row.name
+        value: row => row.firstname
     },
     {
-        column: 'Email',
+        column: 'GENDER',
+        type: String,
+        value: row => row.gender
+    },
+    {
+        column: 'COUNTRY',
+        type: String,
+        value: row => row.country
+    },
+    {
+        column: 'PHONE',
+        type: Number,
+        value: row => row.phone
+    },
+    {
+        column: 'EMAIL',
         type: String,
         value: row => row.email
     },
     {
-        column: 'Email Verified',
-        type: Boolean,
-        value: row => row.emailVerified 
-    } 
+        column: 'STATUS',
+        type: String,
+        value: row => row.status
+    }
     ]
 
     // "C:\Users\godwi\Downloads\LinkSwapsSimilarSites.xlsx"
     async function writeToExcelFile(arr) {
-        arr.splice(0, 1)
+        // arr.splice(0, 1)
         arr.map((row) => {
 
 
         objects.push({
-            domain: row[0],
-            url: row[1] + "",
-            pageAs: row[2] === null ? 0 : row[2],
-            refDomain: row[3] === null ? 0 : row[3],
-            backlinks:  row[4] === null ? 0 : row[4],
-            searchTraffic:  row[5] === null ? 0 : row[5],
-            urlKeywords:  row[6] === null ? 0 : row[6],
-            name: row[7],
-            email: row[8],
-            emailVerified: row[9]
+            memberId: row[0]+'',
+            surname: row[1],
+            firstname: row[2],
+            gender: row[3],
+            country:  row[4],
+            phone:  +row[5],
+            email:  row[6],
+            status: row[7]
         })
 
         })
-        // console.log(objects[0])
-        // console.log(allRows[0])
 
         await writeXlsxFile(objects, {
             schema,
-            filePath: './link.xlsx'
+            filePath: './OrdinaryMembers.xlsx'
         })
     }
     function removeDuplicates(existingSheet, newSheet) {
@@ -127,20 +113,45 @@ app.get('/url?*', function (req, res) {
       
           })
     }
+    function removeHeader(...arr) {
+        arr.map(item => item.shift())
+    }
+    function stringsMatch(a, b){
+        if(a === b){
+            return true
+        }
+        return false
+    }
+
+    function TableTennis(a, b){
+        a.map((a_row) => {
+
+            b.map((b_row, b_idx) => {
+                if(stringsMatch(a_row[1], b_row[0])){
+                    b_row[2] = b_row[2] + '(Table Tennis)'
+                    // console.log(b_row)
+                }
+            })
+        })
+        // console.log(sheetArr[1][1])
+    }
     
     const checkPromise = sheets.map((sheet) => {
         return readXlsxFile("./BrunoExcel.xlsx", {sheet: sheet});
     })
 
     Promise.all(checkPromise).then((rows) => {
-        rows.map((row, i) => {
+        rows.map(row => {
             sheetArr.push(row)
         })
     }).finally(() => {
-        console.log(sheetArr[0][0])
+
+        removeHeader(sheetArr[0], sheetArr[1]);
+        TableTennis(sheetArr[0], sheetArr[1])
+        // console.log(sheetArr[1][0][5])
 
         console.log('Writing unique entries to excel file...')
-        // writeToExcelFile(newSheet);
+        writeToExcelFile(sheetArr[1]);
         // console.log(newSheet.length)
         console.log('All done file ready.')
     });
