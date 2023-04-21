@@ -10,6 +10,7 @@
   },
   "scripts": {
     "start": "nodemon serverCur.js",
+    "bruno": "nodemon brunoExcel.js",
     "test": "nodemon test.js"
   },
   "name": "scserver",
