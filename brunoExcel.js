@@ -30,92 +30,16 @@ app.use((req, res, next) => {
     next();
   })
 
-app.get('/url?*', function (req, res) {
+app.get('/url', function (req, res) {
     // download("https://docs.google.com/spreadsheets/d/1nUPJ42G2lEWl4akz1LC_aNe9oC67fR7qnDM3qEy9jhQ/edit#gid=2004427024", "BrunoExcel.xlsx", callback)
 
-    (function (){
         let sheetArr = [];
         let newSheet = null;
         //
         const sheets = [1, 2];
         const spouseObjects = []
         const ordinaryObjects = []
-        // SPOUSE
-        // const schema = [
-        // {
-        //     column: 'CATEGORY',
-        //     type: String,
-        //     value: row => row.category
-        // },
-        // {
-        //     column: 'ID',
-        //     type: String,
-        //     value: row => row.id
-        // },
-        // {
-        //     column: 'NAME',
-        //     type: String,
-        //     value: row => row.name
-        // },
-        // {
-        //     column: 'PHONE NUMBER',
-        //     type: Number,
-        //     value: row => row.phoneNumber
-        // },
-        // {
-        //     column: 'GENDER',
-        //     type: String,
-        //     value: row => row.gender
-        // },
-        // {
-        //     column: 'EMAIL ADDRESS',
-        //     type: String,
-        //     value: row => row.email
-        // },
-        // {
-        //     column: 'STATUS',
-        //     type: String,
-        //     value: row => row.status
-        // }
-        // ]
-        // ORDINARY
-        const schema = [
-            {
-                column: 'MEMBER ID',
-                type: String,
-                value: row => row.memberId
-            },
-            {
-                column: 'SURNAME',
-                type: String,
-                value: row => row.surname
-            },
-            {
-                column: 'FIRSTNAME',
-                type: String,
-                value: row => row.firstname
-            },
-            {
-                column: 'COUNTRY',
-                type: String,
-                value: row => row.country
-            },
-            {
-                column: 'PHONE',
-                type: Number,
-                value: row => row.phone
-            },
-            {
-                column: 'EMAIL',
-                type: String,
-                value: row => row.email
-            },
-            {
-                column: 'STATUS',
-                type: String,
-                value: row => row.status
-            }
-        ]
+
     
         // "C:\Users\godwi\Downloads\LinkSwapsSimilarSites.xlsx"
         async function writeToExcelFile(arr) {
@@ -126,33 +50,118 @@ app.get('/url?*', function (req, res) {
             spouseObjects.push({
                 category: row[0] == null ? '' : row[0],
                 id: row[1]+'',
-                name: row[2],
+                name: row[2]+'',
                 phoneNumber: +row[3],
-                gender:  row[4],
-                emailAddress:  row[5],
-                status: row[6]
+                gender:  row[4]+'',
+                emailAddress:  row[5]+'',
+                status: row[6]+''
             })
             ordinaryObjects.push({
                 memberId: row[0] +'',
-                surname: row[1],
-                firstname: row[2],
-                gender: row[3],
-                country:  row[4],
+                surname: row[1]+'',
+                firstname: row[2]+'',
+                gender: row[3]+'',
+                country:  row[4]+'',
                 phone:  +row[5],
-                email: row[6],
-                status: row[7]
+                email: row[6]+'',
+                status: row[7]+''
             })
     
             })
-    
-            await writeXlsxFile(ordinaryObjects, {
-                schema,
-                filePath: './Members.xlsx'
-            })
-            // await writeXlsxFile(spouseObjects, {
-            //     spouseSchema,
-            //     filePath: './Members.xlsx'
-            // })
+
+            if(req.query.member === 's'){
+                    // SPOUSE
+                    const schema = [
+                    {
+                        column: 'CATEGORY',
+                        type: String,
+                        value: row => row.category
+                    },
+                    {
+                        column: 'ID',
+                        type: String,
+                        value: row => row.id
+                    },
+                    {
+                        column: 'NAME',
+                        type: String,
+                        value: row => row.name
+                    },
+                    {
+                        column: 'PHONE NUMBER',
+                        type: Number,
+                        value: row => row.phoneNumber
+                    },
+                    {
+                        column: 'GENDER',
+                        type: String,
+                        value: row => row.gender
+                    },
+                    {
+                        column: 'EMAIL ADDRESS',
+                        type: String,
+                        value: row => row.emailAddress
+                    },
+                    {
+                        column: 'STATUS',
+                        type: String,
+                        value: row => row.status
+                    }
+                    ]
+                await writeXlsxFile(spouseObjects, {
+                    schema,
+                    filePath: './Members.xlsx'
+                })
+            }else{
+                // ORDINARY
+                const schema = [
+                    {
+                        column: 'MEMBER ID',
+                        type: String,
+                        value: row => row.memberId
+                    },
+                    {
+                        column: 'SURNAME',
+                        type: String,
+                        value: row => row.surname
+                    },
+                    {
+                        column: 'FIRSTNAME',
+                        type: String,
+                        value: row => row.firstname
+                    },
+                    {
+                        column: 'GENDER',
+                        type: String,
+                        value: row => row.gender
+                    },
+                    {
+                        column: 'COUNTRY',
+                        type: String,
+                        value: row => row.country
+                    },
+                    {
+                        column: 'PHONE',
+                        type: Number,
+                        value: row => row.phone
+                    },
+                    {
+                        column: 'EMAIL',
+                        type: String,
+                        value: row => row.email
+                    },
+                    {
+                        column: 'STATUS',
+                        type: String,
+                        value: row => row.status
+                    }
+                ]
+                await writeXlsxFile(ordinaryObjects, {
+                    schema,
+                    filePath: './Members.xlsx'
+                })
+            }
+
         }
         function removeHeader(...arr) {
             arr.map(item => item.shift())
@@ -200,16 +209,22 @@ app.get('/url?*', function (req, res) {
         }).finally(() => {
     
             // removeHeader(sheetArr[0], sheetArr[1]);
-            // spouse(sheetArr[0], sheetArr[1])
-            ordinary(sheetArr[0], sheetArr[1])
-    
+            if(req.query.member === 's'){
+                spouse(sheetArr[0], sheetArr[1])
+            }else{
+                ordinary(sheetArr[0], sheetArr[1])
+            }
+            // 
+            console.log(req.query.member)
             console.log('Writing unique entries to excel file...')
             writeToExcelFile(sheetArr[1]);
             console.log('All done file ready.')
         });
-    })();
         
-    res.send({"Success": "Operation Completed and duplicate entries have been removed! \n Enjoy your unique excel file."})
+    res.send({
+        "Success": "Operation Completed and duplicate entries have been removed! \n Enjoy your unique excel file.",
+        "request": req.query
+    })
 })
 
     
