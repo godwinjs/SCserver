@@ -54,6 +54,7 @@ app.get('/url', function (req, res) {
                 category: row[0] == null ? '' : row[0]+'',
                 id: row[1] == null ? '' : row[1]+'',
                 name: row[2] == null ? '' : row[2],
+                section: row[7] == null ? '' : row[7],
                 phoneNumber: row[3] === null ? '' : +row[3],
                 gender:  row[4] == null ? '' : row[4],
                 emailAddress:  row[5] === null ? '' : row[5],
@@ -63,6 +64,7 @@ app.get('/url', function (req, res) {
                 memberId:  row[0] == null ? '' : row[0]+'',
                 surname:  row[1] == null ? '' : row[1],
                 firstname:  row[2] == null ? '' : row[2],
+                section: row[8] == null ? '' : row[8],
                 gender:  row[3] == null ? '' : row[3],
                 country:   row[4] == null ? '' : row[4],
                 phone:  row[5] === null ? '' : +row[5],
@@ -89,6 +91,11 @@ app.get('/url', function (req, res) {
                         column: 'NAME',
                         type: String,
                         value: row => row.name
+                    },
+                    {
+                        column: 'SECTION',
+                        type: String,
+                        value: row => row.section
                     },
                     {
                         column: 'PHONE NUMBER',
@@ -132,6 +139,11 @@ app.get('/url', function (req, res) {
                         column: 'FIRSTNAME',
                         type: String,
                         value: row => row.firstname
+                    },
+                    {
+                        column: 'SECTION',
+                        type: String,
+                        value: row => row.section
                     },
                     {
                         column: 'GENDER',
@@ -184,7 +196,8 @@ app.get('/url', function (req, res) {
                         if(b_row[1] == null){
                             return;
                         }
-                        b_row[2] = b_row[2] + `(${req.query.sport.toUpperCase()})`
+                        // b_row[2] = b_row[2] + `(${req.query.sport.toUpperCase()})`
+                        b_row.push(`(${req.query.sport.toUpperCase()})`)
                     }
                 })
             })
@@ -194,7 +207,8 @@ app.get('/url', function (req, res) {
     
                 b.map((b_row) => {
                     if(stringsMatch(a_row[1], b_row[0])){
-                        b_row[2] = b_row[2] + `(${req.query.sport.toUpperCase()})`
+                        // b_row[2] = b_row[2] + `(${req.query.sport.toUpperCase()})`;
+                        b_row.push(`(${req.query.sport.toUpperCase()})`)
                     }
                 })
             })
