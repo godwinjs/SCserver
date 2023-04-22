@@ -114,10 +114,12 @@ app.get('/url?*', function (req, res) {
                 if(existingRow[0] === newRow[0]){
                     // console.log(newRow[0])
                     newSheet.splice(idxNew, 1)
+                    // console.log(newSheet[idxNew])
                 }
                 newSheet.map((rowAgainst, idxAgainst) =>{
                     if(newRow[0] === rowAgainst[0]){
                         if(rep >= 1){
+                            console.log(newRow[0])
                           newSheet.splice(idxAgainst, 1)
                         }
                         rep = rep + 1;
@@ -146,7 +148,6 @@ app.get('/url?*', function (req, res) {
 
         sheetArr.map((existingSheet) => {
             removeDuplicates(existingSheet, newSheet);
-
         })
         console.log('Writing unique entries to excel file...')
         writeToExcelFile(newSheet);
