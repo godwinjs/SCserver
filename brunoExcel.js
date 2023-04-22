@@ -51,23 +51,23 @@ app.get('/url', function (req, res) {
     
     
             spouseObjects.push({
-                category: row[0] == null ? '' : row[0],
-                id: row[1]+'',
-                name: row[2]+'',
+                category: row[0] == null ? '' : row[0]+'',
+                id: row[1] == null ? '' : row[1]+'',
+                name: row[2] == null ? '' : row[2],
                 phoneNumber: row[3] === null ? '' : +row[3],
-                gender:  row[4]+'',
+                gender:  row[4] == null ? '' : row[4],
                 emailAddress:  row[5] === null ? '' : row[5],
-                status: row[6]+''
+                status: row[6] == null ? '' : row[6]
             })
             ordinaryObjects.push({
-                memberId: row[0] +'',
-                surname: row[1]+'',
-                firstname: row[2]+'',
-                gender: row[3]+'',
-                country:  row[4]+'',
+                memberId:  row[0] == null ? '' : row[0]+'',
+                surname:  row[1] == null ? '' : row[1],
+                firstname:  row[2] == null ? '' : row[2],
+                gender:  row[3] == null ? '' : row[3],
+                country:   row[4] == null ? '' : row[4],
                 phone:  row[5] === null ? '' : +row[5],
                 email: row[6] === null ? '' : row[6],
-                status: row[7]+''
+                status:  row[7] == null ? '' : row[7]+''
             })
     
             })
