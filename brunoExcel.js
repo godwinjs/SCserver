@@ -196,7 +196,11 @@ app.get('/url', function (req, res) {
                         if(b_row[1] == null){
                             return;
                         }
-                        b_row[3] = b_row[3] + `(${req.query.sport.toUpperCase()})`
+                        if(b_row[3] === null){
+                            b_row[3] = `(${req.query.sport.toUpperCase()})`
+                        }else{
+                            b_row[3] = b_row[3].toString() + `(${req.query.sport.toUpperCase()})`
+                        }
                         // b_row.push(`(${req.query.sport.toUpperCase()})`)
                     }
                 })
@@ -206,9 +210,12 @@ app.get('/url', function (req, res) {
             a.map((a_row) => {
     
                 b.map((b_row) => {
-                    if(stringsMatch(a_row[1], b_row[0])){
-                        b_row[3] = b_row[3] + `(${req.query.sport.toUpperCase()})`;
-                        // b_row.push(`(${req.query.sport.toUpperCase()})`)
+                    if(stringsMatch(a_row[1], b_row[0])){                        
+                    if(b_row[3] === null){
+                        b_row[3] = `(${req.query.sport.toUpperCase()})`
+                    }else{
+                        b_row[3] = b_row[3].toString() + `(${req.query.sport.toUpperCase()})`
+                    }
                     }
                 })
             })
