@@ -54,9 +54,9 @@ app.get('/url', function (req, res) {
                 category: row[0] == null ? '' : row[0],
                 id: row[1]+'',
                 name: row[2]+'',
-                phoneNumber: +row[3],
+                phoneNumber: row[3] === null ? '' : +row[3],
                 gender:  row[4]+'',
-                emailAddress:  row[5]+'',
+                emailAddress:  row[5] === null ? '' : row[5],
                 status: row[6]+''
             })
             ordinaryObjects.push({
@@ -65,8 +65,8 @@ app.get('/url', function (req, res) {
                 firstname: row[2]+'',
                 gender: row[3]+'',
                 country:  row[4]+'',
-                phone:  +row[5],
-                email: row[6]+'',
+                phone:  row[5] === null ? '' : +row[5],
+                email: row[6] === null ? '' : row[6],
                 status: row[7]+''
             })
     
@@ -113,7 +113,7 @@ app.get('/url', function (req, res) {
                     ]
                 await writeXlsxFile(spouseObjects, {
                     schema,
-                    filePath: './Members.xlsx'
+                    filePath: './SpouseMembers.xlsx'
                 })
             }else{
                 // ORDINARY
@@ -161,7 +161,7 @@ app.get('/url', function (req, res) {
                 ]
                 await writeXlsxFile(ordinaryObjects, {
                     schema,
-                    filePath: './Members.xlsx'
+                    filePath: './OrdinaryMembers.xlsx'
                 })
             }
 
@@ -184,7 +184,7 @@ app.get('/url', function (req, res) {
                         if(b_row[1] == null){
                             return;
                         }
-                        b_row[2] = b_row[2] + `(${req.query.sport})`
+                        b_row[2] = b_row[2] + `(${req.query.sport.toUpperCase()})`
                     }
                 })
             })
@@ -194,7 +194,7 @@ app.get('/url', function (req, res) {
     
                 b.map((b_row) => {
                     if(stringsMatch(a_row[1], b_row[0])){
-                        b_row[2] = b_row[2] + `(${req.query.sport})`
+                        b_row[2] = b_row[2] + `(${req.query.sport.toUpperCase()})`
                     }
                 })
             })
