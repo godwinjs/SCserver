@@ -217,7 +217,9 @@ class Hero {
 
     var a_ = 1;
 //    console.log(window.a_)
- console.log(this.a_)
+ console.log(__filename)
+
+
    
 
 
