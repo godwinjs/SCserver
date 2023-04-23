@@ -215,7 +215,10 @@ class Hero {
 
     console.log(this.name ) 
 
-
+    var a_ = 1;
+//    console.log(window.a_)
+ console.log(this.a_)
+   
 
 
 
