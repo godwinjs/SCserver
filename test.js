@@ -219,6 +219,10 @@ class Hero {
 //    console.log(window.a_)
  console.log(__filename)
 
+ var o_ = {}
+ console.log(o_.constructor)
+
+
 
    
 
