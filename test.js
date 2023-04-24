@@ -1,84 +1,84 @@
-(function(){
-    function render(fog= 0, fogLevel= 1) {
+(function () {
+    function render(fog = 0, fogLevel = 1) {
         console.log(`fog: ${fog}, fogLevel: ${fogLevel}`)
     }
     render(10)
-    
+
     var scope = 'outer-scope'
-    
-    function sc(param=scope){
+
+    function sc(param = scope) {
         var scope = "inner-scope"
         console.log(param)
     }
-    
+
     sc();//outer-scope
-    
-    function say(name, ...qoutes){
+
+    function say(name, ...qoutes) {
         console.log(`In ${name} voice, i say ${qoutes}`)
         console.log(qoutes.map((item) => {
             return item;
         }))
     }
     say('Morgan Freeman', 'something serious', ' AI is dangerously beneficial for mankind', ' the inventiion of deepfake technology is mind blowing', ' be cautious.')
-    
-    function sum(a,b,c){
-        return a+b+c
+
+    function sum(a, b, c) {
+        return a + b + c
     }
-    let numb = [5, 6,7]
-    
+    let numb = [5, 6, 7]
+
     console.log(sum.apply(null, numb))//es5 => 18
     console.log(sum(...numb))//es6 => 18
-    
+
     // parseInt(number, radix)
     //decimal
     console.log(parseInt('FF', 10));
     // hexadecimal
     console.log(parseInt('FF', 16));
-    
-    
-    function swap(a,b){ // <--function scope starts here
-        if(a>0 && b>0){ // <--block scope starts here
-        let tmp=a;
-        a=b;
-        b=tmp;
+
+
+    function swap(a, b) { // <--function scope starts here
+        if (a > 0 && b > 0) { // <--block scope starts here
+            let tmp = a;
+            a = b;
+            b = tmp;
         } // <--block scope ends here
-        console.log(a,b);
+        console.log(a, b);
         // console.log(tmp); // tmp is not defined as it is available only in the block scope
-        return [a,b];
-        }
-        swap(1,2);
-    
-     var f = function myFunc() {
+        return [a, b];
+    }
+    swap(1, 2);
+
+    var f = function myFunc() {
         return 1;
-     }
-       
-     console.log(f())
-    
-    
+    }
+
+    console.log(f())
+
+
     var newFunc = function a() {
-     console.log('A!');
-     return function () {
-     console.log('B!');
-     };
-     }();
-    
-     newFunc()
-    
-     function a() {
+        console.log('A!');
+        return function () {
+            console.log('B!');
+        };
+    }();
+
+    newFunc()
+
+    function a() {
         console.log('first run!');
         a = function () {
             console.log('rewrite function a during second run!');
         }()
-     }
-    
-     a();
-    
+    }
+
+    a();
+
     //  Closures
-    function f_clo(){
+    function f_clo() {
         var arr = [], i;
-    
-        for(i =0; i<3; i++) {
-            arr[i] = function(){
+
+        for (i = 0; i < 3; i++) {
+            arr[i] = function () {
                 //functions don't have access to or stores the value of a variable,
                 // but stores the reference to that variable and gets the value ofthe variable whenever 
                 // the function is called.
@@ -87,11 +87,11 @@
         }
         return arr;
     }
-    
+
     function f_clo2() {
         var arr = [], i;
         for (i = 0; i < 3; i++) {
-            (function (x){
+            (function (x) {
                 arr[i] = function () {
                     return x;
                 }
@@ -105,95 +105,98 @@
     var arr = f_clo2().map((item) => {
         return item()
     })
-    
+
     console.log(arr)
-    
+
     var data = function () {
         let numbers = [0]
-        
+
         return {
-            set: function (...argsNumb){
+            set: function (...argsNumb) {
                 argsNumb.map((item) => {
-                    if(typeof(item) === 'number'){
+                    if (typeof (item) === 'number') {
                         numbers.push(item)
                     }
                 })
                 return numbers
             },
-            get: function (){
+            get: function () {
                 return numbers;
             }
         }
     }();
     data.set(1, 2, "effewsdf", 10, 30, 40, 'ees')
     console.log(data.get())
-    
-    var loopArr = function(arr) {
-        var i =0;
-        return function(){
+
+    var loopArr = function (arr) {
+        var i = 0;
+        return function () {
             return arr[i++]
         }
     }
-    
+
     var next = loopArr([1, 2, 3, 10, 3, 81, 99])
-    for(var i = 0; i < 7; i++){
+    for (var i = 0; i < 7; i++) {
         console.log(next())
     }
-    
-    function h(){
+
+    function h() {
         var u = 'outer-scope'
-        function j(){
+        function j() {
             let u = 'inner scope'
-    
+
             function ut() {
                 console.log(u)
             }
             ut()
         }
-        j(); 
+        j();
     }
     h()
-    
+
     // EXERCISE @ pg132
     // 1
-    function getRGB(hex){
-        let h = hex.split(''), 
-            p = function (a, b){
-                return parseInt(a+b, 16)
+    function getRGB(hex) {
+        let h = hex.split(''),
+            p = function (a, b) {
+                return parseInt(a + b, 16)
             };
-    
+
         return `rgb(${p(h[1], h[2])}, ${p(h[3], h[4])}, ${p(h[5], h[6])})`
     }
     console.log(getRGB('#0000ff'))
-    
+
     // 2
-    
+
     // 3 ans=2
     var a3 = 1;
-     function f3() {
-     function n3() {
-        console.log(a3);
-     }
-     var a3 = 2;
-     n3();
-     }
-     f3()
-    
+    function f3() {
+        function n3() {
+            console.log(a3);
+        }
+        var a3 = 2;
+        n3();
+    }
+    f3()
+
     // 4: All these following examples alert "Boo!". Can you explain why?
     var f = console.log;
-     eval('f("Boo!")');
-     //
-     var e;
-     var f = console.log;
-     eval('e=f')('Boo!');
-     //
-     (function(){
-        return console.log;}
-        )()('Boo!');
-    
+    eval('f("Boo!")');
+    //
+    var e;
+    var f = console.log;
+    eval('e=f')('Boo!');
+    //
+    (function () {
+        return console.log;
+    }
+    )()('Boo!');
+
     // 5:
-    
-})
+
+})()
+
+
 // OOP
 var oo = {}
 oo.fname = 'scott';
@@ -211,21 +214,85 @@ class Hero {
     }
 }
 
-    var ha = new Hero('Leonardo');
+var ha = new Hero('Leonardo');
 
-    console.log(this.name ) 
+console.log(this.name)
 
-    var a_ = 1;
+var a_ = 1;
 //    console.log(window.a_)
- console.log(__filename)
+console.log(__filename)
 
- var o_ = {}
- console.log(o_.constructor)
+var o_ = {}
+console.log(o_.constructor)
+
+let a = 1
+let b = 2
+//object literals1
+let val = { a, b }
+console.log(val)
+//object literals2
+var obj_ = {
+    prop: 1,
+    modifier() {
+        console.log(this.prop);
+    }
+}
+console.log(obj_)
+
+//Object properties and attributes
+
+let a__ = { age: 23, gender: "male" }
+Object.defineProperty(a__, 'superpowers', {
+    enumberable: false, value:
+        'ES6'
+})
+console.log(Object.getOwnPropertyDescriptor(a__, 'superpowers'));
+// \\\\\object.asign to copy object to source
+console.log(Object.assign(a__, { age: 33 }))
+// 
+console.log(NaN === NaN) //false
+console.log(-0 === +0) //true
+//ES6 Object.is
+console.log(Object.is(NaN, NaN)) //true
+console.log(Object.is(-0, +0)) //false
 
 
+// Destructuring Objects
 
-   
+let config = {
+    server: 'localhost',
+    port: '8080',
+    timeout: 900,
+}
+console.log(config.valueOf())
 
+let { server, port, timeout: t/*using custom variable*/, stats = 'keep alive'/*adding props to detructured object*/ } = config;
+console.log(server, port, t, stats)
 
+// Destructuring arrays
+const days = ['Thursday', 'Friday', 'Saturday', 'Sunday']
+const [, , sat, sun] = days;
+console.log(sat, sun)
+let a___ = 1, b___ = 2;
+[b___, a___] = [a___, b___]
+console.log(a___, b___) //2 1
+const [x, ...y] = ['a', 'b', 'c'];
+console.log(x, y)
+
+// Arrays a special type of Object
+var ar = []
+ar[0] = 1;
+ar.props = 2;
+ar.push('end', 4, true, 'animation')
+console.log(ar)
+console.log(ar.slice(1, 3))//start starts at the start ind, and stop stops before the stop ind
+
+// Array.from(arg, mappingFunction)
+function makeArrayAndDoSome(){
+    return Array.from(arguments, arr =>  arr + 2)
+}
+console.log(makeArrayAndDoSome(1,3,5,7,9))
+// Array.of() es6 of Array()
+console.log(Array.of(2))//with Array() this would have returned [undefined, undefined] with arr.length = 2
 
 
