@@ -194,7 +194,7 @@
 
     // 5:
 
-})()
+})
 
 
 // OOP
@@ -507,3 +507,16 @@ console.log((new String('couch casting')).indexOf('cou'))
     console.log(s.split('l'))
     console.log(s.reverse())
 }
+
+/*
+6. Imagine that Array()and the array literal notation don't exist. Create a
+constructor called MyArray() that behaves as close to Array() as possible. Test
+it with the following code:
+*/
+
+function MyArray(...args) {
+    return args;
+}
+
+var z = new MyArray(1, 2, 3, "test");
+console.log(z)
