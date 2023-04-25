@@ -480,8 +480,17 @@ console.log((new String('couch casting')).indexOf('cou'))
 
 
                 return final;
+            }            
+            this.reverse = () => {
+                let ar = []
+                for(let i = arr.length - 1; i >= 0; i--){
+                    ar.push(arr[i])
+                }
+                return ar;
             }
+
         }
+
     }
     var s = new MyString('hello');
 
@@ -496,4 +505,5 @@ console.log((new String('couch casting')).indexOf('cou'))
     console.log(s.slice(0, -1))
     console.log(s.split('e'))
     console.log(s.split('l'))
+    console.log(s.reverse())
 }
