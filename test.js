@@ -216,7 +216,7 @@ class Hero {
 
 var ha = new Hero('Leonardo');
 
-console.log(this.name)
+console.log(ha)
 
 var a_ = 1;
 //    console.log(window.a_)
@@ -314,3 +314,186 @@ var sed =  new Function('a', 'b', 'return a + b'); //executes a string
 console.log(sed(2,2))
 
 console.log((() => {}).toString())
+
+// need for hacks to access this when using a normal function
+{
+    var greeter = {
+    default: 'hello',
+    greet: function(names){
+        var that = this;
+        names.forEach( function(name){
+            console.log(that.default + ' ' + name)
+        })
+    }
+}
+
+greeter.greet(['world', 'heaven'])
+
+}
+// Lexical this in arrow function no need for hacks to access this
+{
+    var greeter = {
+    default: 'hello',
+    greet: function(names){
+        var that = this;
+        names.forEach( (name) => {
+            console.log(that.default + ' ' + name)
+        })
+    }
+}
+
+greeter.greet(['world', 'heaven'])
+
+}
+console.log(Object.prototype.toString.call({}))
+console.log(Object.prototype.toString.call([]))
+console.log((new String('couch casting')).indexOf('cou'))
+
+{
+    var statss = [0, 0, 0, 0, 0, 0, 0];
+    for (var i = 2016; i < 3016; i++) {
+        stats[new Date(i, 5, 20).getDay()]++;
+    }
+}
+{
+    var re = new RegExp("j.*t")
+    console.log(Object.getOwnPropertyDescriptors(re))
+
+    /*
+        match(): Returns an array of matches
+        search(): Returns the position of the first match
+        replace(): Allows you to substitute matched text with another string
+        split(): Accepts a regexp when splitting a string into array elements
+    */
+}
+// EXERCISES
+{
+    // Global Object
+    function F() {
+        function C() {
+        return this;
+        }
+        return C();
+        }
+        var o = new F();
+        console.log(o)
+
+}
+{
+    // C is Object
+    function C(){
+        this.a = 1;
+        return false;
+        }
+        Object.prototype.toString.call(C)
+        console.log(typeof new C());
+       
+
+}
+{
+    //'1--1,2--2'
+    c = [1, 2, [1, 2]];
+    c.sort()
+    console.log(c.join('--'))
+}
+{
+    /*
+        4. Imagine the String() constructor didn't exist. Create a constructor function,
+            MyString(), that acts like String() as closely as possible. You're not allowed to
+            use any built-in string methods or properties, and remember that the String()
+            doesn't exist. You can use this code to test your constructor
+    */
+    class MyString {
+        constructor(str) {
+            let arr = []
+            console.log(arr)
+            for (var i in str) {
+                this[i] = str[i]
+                arr.push(str[i])
+            }
+            this.length = str.length
+            this.toString = function () {
+                return str
+            }
+            this.valueOf = function () {
+                return str
+            }
+            this.charAt = (char) => {
+                if(arr[char] === undefined){
+                    return arr[0]
+                }
+                return arr[char]
+            }
+            this.concat = (arg) => {
+                return str + arg
+            }
+            this.slice = (start, end) => {
+                var result = [];
+                for(var i in arr){
+        
+                    if( i < end && i >= start ){
+                        if(arr[i] !== undefined){
+                            result.push(arr[i])
+                        }
+                    }else if(end <= 0 && (i >= start && i < end+arr.length)){
+                        if(arr[i] !== undefined){
+                            result.push(arr[i])
+                        }
+                    }else if( start <= 0 && (i >= start+arr.length && i < end)){
+                        if(arr[i] !== undefined){
+                            result.push(arr[i])
+                        }
+                    }
+                }
+
+                return result;
+                // return arr.slice(start, end)
+            }
+            this.split = (arg) => {
+                var result = [], final=[];
+
+                for(var i in arr){
+                    if(arr[i] !== arg){
+                        result.push(arr[i])
+
+                    }else{
+                        result.push(' ')
+                    }
+                }
+                
+                if(result.length === arr.length){
+                    console.log('done')
+                    let add = '';
+                    for(var i in result){
+                        if(result[i] !== ' '){
+                            add= add+result[i]
+                        }else{
+                            final.push(add)
+                            add = ''
+                        }
+                        if(i == result.length - 1){
+                            final.push(add)
+                        }
+                    }
+                    
+                }
+
+
+                return final;
+            }
+        }
+    }
+    var s = new MyString('hello');
+
+    console.log(s[0])
+    console.log(s.toString())
+    console.log( s.valueOf())
+    console.log( s.charAt(1))
+    console.log( s.charAt('2'))
+    console.log( s.charAt('e'))
+    console.log(s.concat(' world!'))
+    console.log( s.slice(1, 3))
+    console.log(s.slice(0, -1))
+    console.log(s.split('e'))
+    console.log(s.split('l'))
+}
