@@ -1,4 +1,4 @@
-(function () {
+function Func() {
     function render(fog = 0, fogLevel = 1) {
         console.log(`fog: ${fog}, fogLevel: ${fogLevel}`)
     }
@@ -194,10 +194,11 @@
 
     // 5:
 
-})
-
+}
 
 // OOP
+function OOP(){
+    // OOP
 var oo = {}
 oo.fname = 'scott';
 oo.lname = 'lang'
@@ -507,6 +508,7 @@ console.log((new String('couch casting')).indexOf('cou'))
     console.log(s.split('l'))
     console.log(s.reverse())
 }
+}
 
 /*
 6. Imagine that Array()and the array literal notation don't exist. Create a
@@ -514,9 +516,46 @@ constructor called MyArray() that behaves as close to Array() as possible. Test
 it with the following code:
 */
 
-function MyArray(...args) {
-    return args;
+class MyArray {
+    constructor(...args) {
+        
+        this.length = args.length;
+
+        this.toString = () => {
+            let str = ''
+            for(var i in args){
+                str+= args[i] + `${(i < args.length - 1) ? ',':''}`
+            }
+            return str
+            // return Object.prototype.toString.call(arr);
+        }
+        this.push = (arg) => {
+            args[args.length] = arg;
+            return args;
+        }
+        this.pop = () => {
+            args.length = args.length - 1
+        }
+        this.join = (arg) => {
+            let str = ''
+            for(var i in args){
+                str+= args[i] + `${(i < args.length - 1) ? arg:''}`
+            }
+            return str
+        }
+
+        return args;
+    }
 }
 
-var z = new MyArray(1, 2, 3, "test");
+var z = new Array(1, 2, 3, "test");
+
 console.log(z)
+console.log(z.toString())
+console.log(z.length)
+console.log(z[z.length - 1])
+console.log(z.push('poo'))
+console.log(z.pop())
+console.log(z.toString())
+console.log(z.join(','))
+console.log(z.join(" isn't "))
