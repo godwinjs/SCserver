@@ -295,4 +295,22 @@ console.log(makeArrayAndDoSome(1,3,5,7,9))
 // Array.of() es6 of Array()
 console.log(Array.of(2))//with Array() this would have returned [undefined, undefined] with arr.length = 2
 
+// Array iteration
+// Array.prototype.entries()
+// Array.prototype.values()
+// Array.prorotype.keys()
+var sec = [1, 2, 'des', 'sews', 3, 4,5,true]
+for (const [index, value] of sec.entries()){
+    let ar = [];
+    ar.props = {[index]: value};
+    console.log(ar)
+}
 
+let numbers = [1,2,3,4,5,6,7,8,9,10];
+console.log(numbers.find(n => n > 8)); //search
+console.log(numbers.findIndex(n => n > 5)); //search
+console.log(eval('2+2')) //and
+var sed =  new Function('a', 'b', 'return a + b'); //executes a string
+console.log(sed(2,2))
+
+console.log((() => {}).toString())
