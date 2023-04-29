@@ -508,7 +508,6 @@ console.log((new String('couch casting')).indexOf('cou'))
     console.log(s.split('l'))
     console.log(s.reverse())
 }
-}
 
 /*
 6. Imagine that Array()and the array literal notation don't exist. Create a
@@ -559,3 +558,23 @@ console.log(z.pop())
 console.log(z.toString())
 console.log(z.join(','))
 console.log(z.join(" isn't "))
+}
+
+/*
+7. Imagine Math didn't exist. Create a MyMath object that also provides the
+following additional methods:
+MyMath.rand(min, max, inclusive): This generates a random number
+between min and max, inclusive if inclusive is true (default)
+MyMath.min(array): This returns the smallest number in a given array
+MyMath.max(array): This returns the largest number in a given arra
+*/
+
+class MyMath {
+    constructor(min, max, inclusive) {
+
+        this.rand = () => {
+        }
+    }
+}
+
+/*Iterators And Generators*/ 
