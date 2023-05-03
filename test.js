@@ -558,7 +558,6 @@ console.log(z.pop())
 console.log(z.toString())
 console.log(z.join(','))
 console.log(z.join(" isn't "))
-}
 
 /*
 7. Imagine Math didn't exist. Create a MyMath object that also provides the
@@ -575,6 +574,7 @@ class MyMath {
         this.rand = () => {
         }
     }
+}
 }
 
 /*Iterators And Generators*/ 
