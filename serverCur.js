@@ -21,7 +21,7 @@ app.get('/url?*', function (req, res) {
     let sheetArr = [];
     let newSheet = null;
     //
-    const sheets = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
+    const sheets = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
     const objects = []
     const schema = [
     {
@@ -141,17 +141,17 @@ app.get('/url?*', function (req, res) {
     }).finally(() => {
         if(newSheet === null){
             newSheet = sheetArr[sheetArr.length - 1]
-            console.log(newSheet.length)
-            // console.log(sheetArr[sheetArr.length - 1][1])
+            // console.log(newSheet.length)
+            console.log(sheetArr[sheetArr.length - 1][1])
             sheetArr.pop();
         }
 
         sheetArr.map((existingSheet) => {
-            removeDuplicates(existingSheet, newSheet);
+            // removeDuplicates(existingSheet, newSheet);
         })
         console.log('Writing unique entries to excel file...')
-        writeToExcelFile(newSheet);
-        console.log(newSheet.length)
+        // writeToExcelFile(newSheet);
+        // console.log(newSheet.length)
         console.log('All done file ready.')
     });
         
