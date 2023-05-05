@@ -141,8 +141,8 @@ app.get('/url?*', function (req, res) {
     }).finally(() => {
         if(newSheet === null){
             newSheet = sheetArr[sheetArr.length - 1]
-            // console.log(newSheet.length)
-            console.log(sheetArr[sheetArr.length - 1][0])
+            console.log(newSheet.length)
+            // console.log(sheetArr[sheetArr.length - 1][0])
             sheetArr.pop();
         }
 
