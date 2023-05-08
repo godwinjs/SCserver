@@ -20,54 +20,71 @@ app.get('/url?*', function (req, res) {
 
   // console.log(req.query)
   const { url, fileUrl } = req.query;
+const objects = []
+const schema = [
+{
+    column: 'Domain',
+    type: String,
+    value: row => row.domain
+},
+{
+    column: 'URL',
+    type: String,
+    value: row => row.url
+},
+{
+    column: 'Email',
+    type: String,
+    value: row => row.email
+}
+]
 
-  // let allUrls = [];
-  let allRows = [];
+let allDomains = [];
 
-  // File path.
-  // .xlsx
+  // "C:\Users\godwi\Downloads\LinkSwapsSimilarSites.xlsx"
+  async function writeToExcelFile(arr) {
+    // console.log(objects[0])
+    // console.log(allRows[0])
 
-//   readXlsxFile("./AllKeyword.xlsx", {sheet: 1}).then((rows) => {
-//     // `rows` is an array of excel file rows
+    arr.map((row) => {
+        objects.push({
+            domain: row[0],
+            url: row[1],
+            email: row[2]
+          })
+    })
 
-//     allRows = rows;
-//     let count = 0;
-//     console.log(allRows.length)
-//     allRows.map((rowCheck, idxCheck) => {   
-       
-//       let rep = 0;
+      await writeXlsxFile(objects, {
+        schema,
+        filePath: './texas/sitesDone.xlsx'
+      })
 
-//       allRows.map((rowAgainst, idxAgainst) => {
-//         count = count + 1;   
-//         if(rowCheck[0] === rowAgainst[0]){
-//           if(rep >= 1){
-//             allRows.splice(idxAgainst, 1)
-//           }
-//           rep = rep + 1;
-//         }
-//         if(allRows.length - 1 == idxCheck){
-//           console.log(count)
-//         }
-//       })
+      console.log('done writing')
+  }
 
-//     })
-//     console.log(allRows.length)
-//     console.log(allRows[allRows.length - 1])
-//     // writeToExcelFile(allRows)
-//   })
+  readXlsxFile("./texas/TexasNewsSites.xlsx", {sheet: 1}).then((rows) => {
+    // `rows` is an array of excel file rows
+    rows.shift()
+    rows.map((row) => {
+        allDomains.push(row[0])
+    })
+    //   getDom(allDomains)
+  })
 
   const crawledData = [];
+  const siteEmails =[]
 
-  const crawlDom = (response) => {
+  const crawlDom = (response, index) => {
     // link[0].property, link[1].property
-    let url;
-    if(response.value.config.url === undefined){
+    let url, dom= response.value.data;
+    if(response.value === undefined){
       url = 'bad url'
     }else{
       url = response.value.config.url;
     }
 
-    let dom = response.value.data;
+    crawledData[index] = [];
+
     const $ = cheerio.load(dom)
 
     // plugins
@@ -78,42 +95,64 @@ app.get('/url?*', function (req, res) {
         console.log(this.text());
     };
 
+    function pushHttps(str){
+        if(str.split(':')[0] === 'https'){
+            if(str.split('/').length < 6){
+                crawledData[index].push(str)
+            }
+        }else{            
+            if(str.split('/').length < 4){
+                crawledData[index].push(url+str)
+            }
+        }
+    }
     // 
     $('body').find('a').map((a) => {
           let href = $('body').find('a')[a].attribs.href;
           // console.log(href.search(/contact/i))
           if(!(href === undefined)){
-            if(href.search(/contact/i) > -1) {
-              crawledData.push({[url]: href})
-            }
+
             if(href.search(/mailto/i) > -1){
-              crawledData.push({[url]: href})
+                pushHttps(href);
+            }else{
+                if(href.search(/contact/i) > -1) {
+                    pushHttps(href);
+                  }else{
+                      if(href.search(/contact-us/i) > -1){
+                        pushHttps(href);
+                        }else{
+                          if(href.search(/about/i) > -1){
+                            pushHttps(href);
+                            }else{
+                              if(href.search(/about-us/i) > -1){
+                                pushHttps(href);
+                                }else{
+                                  if(href.search(/author/i) > -1){
+                                    pushHttps(href);
+                                  }else{
+                                    if(href.search(/writer/i) > -1){
+                                        pushHttps(href);
+                                    }else{
+                                        if(href.search(/editor/i) > -1){
+                                            pushHttps(href);
+                                        }else{
+                                            if(href.search(/writing/i) > -1){
+                                                pushHttps(href);
+                                            }
+                                        }
+                                    }
+                                  }
+                                }
+                            }   
+                        }
+           
+                  }
             }
-            if(href.search(/author/i) > -1){
-              crawledData.push({[url]: href})
-            }
-            if(href.search(/writer/i) > -1){
-              crawledData.push({[url]: href})
-            }
-            if(href.search(/editor/i) > -1){
-              crawledData.push({[url]: href})
-            }
-            if(href.search(/writing/i) > -1){
-              crawledData.push({[url]: href})
-            }
-            if(href.search(/about/i) > -1){
-              // crawledData.push({[url]: href})
-            }
-            if(href.search(/about-us/i) > -1){
-              // crawledData.push({[url]: href})
-            }
-            if(href.search(/contact-us/i) > -1){
-              crawledData.push({[url]: href})
-            }
+
       }
     })
     // promise.value.config.url
-    console.log(crawledData)
+    // console.log('finished '+idx+' link')
     
   }
 
@@ -121,7 +160,7 @@ app.get('/url?*', function (req, res) {
   const getDom = (urls) => {
     const sendCrawlRequest = (url) => {
       return axios.get(url).then((data) => {
-        return data.data;
+        return data;
       }).catch(error => {
         console.error('Error:', error.message)
         // console.error('Stack trace:', error.stack)
@@ -140,15 +179,64 @@ app.get('/url?*', function (req, res) {
       const fulfilledResponses = results.filter(result => result.status === 'fulfilled');
       const rejectedResponses = results.filter(result => result.status === 'rejected');
 
-      console.log(fulfilledResponses)
-      fulfilledResponses.map((promise, index) => {
-        // crawlDom(promise, index)
+      fulfilledResponses.map((item, idx) => {
+        if(item.value === undefined){
+            return
+        }
+        crawlDom(item, idx)
       })
+    }).finally(() => {
+        
+        crawledData.map((item) => {
+            const urls = item.map((url, idx) => {
+                return axios.get(url).then((response) => {
+                    response.idx = idx;
+                    return response
+                })
+            })
+
+            Promise.all(urls).then((response) => {
+                let _url;
+                if(response[0] === undefined){
+                  _url = 'bad url'
+                }else{
+                  _url = response[0].request.host;                
+                  siteEmails[response[0].idx] = [_url, response[0].config.url];
+
+                  const $ = cheerio.load(response[0].data);
+                  $('body').find('a').map((a) => {
+                      let href = $('body').find('a')[a].attribs.href;
+                      if(!(href === undefined)){
+                          if(href.search(/mailto/i) > -1){
+                              siteEmails[response[0].idx].push(href)
+                          }
+                      }
+                  })
+                }
+
+                
+            }).finally(() => {
+                writeToExcelFile(siteEmails)
+                // console.log(siteEmails)
+            })
+        })
     })
 
   }
 
-  getDom(['https://www.chron.com/', 'https://www.statesman.com/'])
+  getDom([
+    'https://www.dallasnews.com/',
+'https://www.houstonchronicle.com/',
+'https://www.texastribune.org/',
+'https://www.kvue.com/',
+'https://www.ksat.com/',
+'https://www.nbcdfw.com/',
+'https://www.myfoxzone.com/',
+'https://www.star-telegram.com/',
+'https://www.news-journal.com/',
+'https://www.mysanantonio.com/',
+'https://www.wfaa.com/'
+  ])
   
   res.send({"Success": "Operation Completed and duplicate entries have been removed! \n Enjoy your unique excel file."})
 
