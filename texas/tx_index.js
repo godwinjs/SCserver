@@ -192,6 +192,13 @@ let allDomains = [];
                 return axios.get(url).then((response) => {
                     response.idx = idx;
                     return response
+                }).catch((error) => {
+                    console.error('Error:', error.message)
+                    // console.error('Stack trace:', error.stack)
+              
+                    // Retry the request
+                    console.log(`Retrying request to ${url}...`)
+                    // return axios.get(url)
                 })
             })
 
@@ -248,3 +255,24 @@ app.get('/urls?*', function (req, res) {
 
     
 app.listen(5001)
+
+// https://www.amarillo.com/
+// https://www.statesman.com/
+// https://www.brownsvilleherald.com/
+// https://www.caller.com/
+// https://www.sanmarcosrecord.com/
+// https://dentonrc.com/
+// https://elpasoheraldpost.com/
+// https://fortworthbusiness.com/
+// https://www.galvnews.com/
+// https://www.lmtonline.com/
+// https://www.news-journal.com/
+// https://www.lubbockonline.com/
+// https://www.themonitor.com/
+// https://www.oaoa.com/
+// https://www.panews.com/
+// https://www.gosanangelo.com/
+// https://www.texarkanagazette.com/
+// https://tylerpaper.com/
+// https://www.victoriaadvocate.com/
+// https://www.timesrecordnews.com/
