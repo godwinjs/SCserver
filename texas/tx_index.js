@@ -231,19 +231,7 @@ let allDomains = [];
 
   }
 
-  getDom([
-    'https://www.dallasnews.com/',
-'https://www.houstonchronicle.com/',
-'https://www.texastribune.org/',
-'https://www.kvue.com/',
-'https://www.ksat.com/',
-'https://www.nbcdfw.com/',
-'https://www.myfoxzone.com/',
-'https://www.star-telegram.com/',
-'https://www.news-journal.com/',
-'https://www.mysanantonio.com/',
-'https://www.wfaa.com/'
-  ])
+//   getDom([])
   
   res.send({"Success": "Operation Completed and duplicate entries have been removed! \n Enjoy your unique excel file."})
 
