@@ -182,6 +182,7 @@ const schema = [
           console.log(this.text());
         };
 
+        // 
         $('body').find('a').map((a) => {
           let href = $('body').find('a')[a].attribs.href;
           // console.log(href.search(/contact/i))

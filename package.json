@@ -9,8 +9,9 @@
     "write-excel-file": "^1.4.24"
   },
   "scripts": {
-    "start": "nodemon serverCur.js",
-    "bruno": "nodemon brunoExcel.js",
+    "start": "nodemon ./duplicates/dp_index.js",
+    "bruno": "nodemon ./brunoJob/bn_index.js",
+    "texas": "nodemon ./texas/tx_index.js",
     "test": "nodemon test.js"
   },
   "name": "scserver",
