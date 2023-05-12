@@ -21,7 +21,7 @@ app.get('/url?*', function (req, res) {
     let sheetArr = [];
     let newSheet = null;
     //
-    const sheets = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    const sheets = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17];
     const objects = []
     const schema = [
     {
@@ -100,7 +100,7 @@ app.get('/url?*', function (req, res) {
 
         await writeXlsxFile(objects, {
             schema,
-            filePath: './link.xlsx'
+            filePath: './duplicates/link.xlsx'
         })
     }
     function removeDuplicates(existingSheet, newSheet) {
@@ -131,7 +131,7 @@ app.get('/url?*', function (req, res) {
     }
     
     const checkPromise = sheets.map((sheet) => {
-        return readXlsxFile("./AllKeywords.xlsx", {sheet: sheet});
+        return readXlsxFile("./duplicates/AllKeywords.xlsx", {sheet: sheet});
     })
 
     Promise.all(checkPromise).then((rows) => {
@@ -159,4 +159,4 @@ app.get('/url?*', function (req, res) {
 })
 
     
-app.listen(5001)
+app.listen(5000)
