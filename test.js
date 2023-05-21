@@ -578,3 +578,6 @@ class MyMath {
 }
 
 /*Iterators And Generators*/ 
+function IG() {
+    
+}
