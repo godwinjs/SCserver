@@ -1,1 +1,426 @@
-[{"domain":"bestonlinesportsbooks.info","url":"https://www.bestonlinesportsbooks.info/usa-sportsbooks/georgia"},{"domain":"espn.com","url":"https://www.espn.com/chalk/story/_/id/35186403/notable-bets-ohio-state-georgia-opening-line"},{"domain":"sportslens.com","url":"https://sportslens.com/georgia/betting-apps/"},{"domain":"georgiarecorder.com","url":"https://georgiarecorder.com/2023/03/19/online-sports-betting-back-on-the-table-as-georgia-lawmakers-hijack-soapbox-derby-bill/"},{"domain":"basketballinsiders.com","url":"https://www.basketballinsiders.com/ga/betting-apps/"},{"domain":"bookmakers.bet","url":"https://www.bookmakers.bet/43983/betting-sites-georgia/"},{"domain":"lineups.com","url":"https://www.lineups.com/betting/georgia-sports-betting/"},{"domain":"forbes.com","url":"https://www.forbes.com/sites/danielwallach/2023/03/05/georgia-sports-betting-by-next-super-bowl-a-path-forward-is-becoming-clear/"},{"domain":"cbsnews.com","url":"https://www.cbsnews.com/atlanta/news/all-bets-are-off-georgia-lawmakers-nix-legal-sports-betting/"},{"domain":"foxsports.com","url":"https://www.foxsports.com/stories/college-football/cfp-championship-game-odds-tcu-vs-georgia-best-bets"}]
+[
+    {
+        "domain": "mightytips.com",
+        "url": "https://www.mightytips.com/bookmakers/georgia-betting-sites/"
+    },
+    {
+        "domain": "cbssports.com",
+        "url": "https://www.cbssports.com/promotions/sports-betting-in-georgia-when-it-will-be-legalized-how-to-bet-online-where-to-get-picks-betting-promos/#:~:text=There%20was%20a%20strong%20effort,Georgia%20sports%20betting%20is%20%3Dunclear."
+    },
+    {
+        "domain": "gamingtoday.com",
+        "url": "https://www.gamingtoday.com/georgia/#:~:text=Georgia%20Sports%20Betting%20FAQs&text=No%2C%20online%20sports%20betting%20is,within%20the%20State%20of%20Georgia."
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/sports-betting-apps"
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/sports-betting-apps"
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/bet365#:~:text=No%2C%20the%20bet365%20Sportsbook%20is,yet%20to%20pass%20any%20legislation."
+    },
+    {
+        "domain": "thesportsgeek.com",
+        "url": "https://www.thesportsgeek.com/sportsbooks/us/georgia/"
+    },
+    {
+        "domain": "gamblingsites.org",
+        "url": "https://www.gamblingsites.org/sports-betting/us/georgia/"
+    },
+    {
+        "domain": "bookmakers.bet",
+        "url": "https://www.bookmakers.bet/43983/betting-sites-georgia/"
+    },
+    {
+        "domain": "onlinesportsbetting.net",
+        "url": "https://www.onlinesportsbetting.net/usa/georgia/"
+    },
+    {
+        "domain": "sportslens.com",
+        "url": "https://sportslens.com/georgia/betting-apps/"
+    },
+    {
+        "domain": "basketballinsiders.com",
+        "url": "https://www.basketballinsiders.com/ga/"
+    },
+    {
+        "domain": "nypost.com",
+        "url": "https://nypost.com/article/best-georgia-sports-betting-sites/"
+    },
+    {
+        "domain": "sportsbetting.legal",
+        "url": "https://sportsbetting.legal/states/georgia/"
+    },
+    {
+        "domain": "gaming.net",
+        "url": "https://www.gaming.net/georgia-sports-betting/"
+    },
+    {
+        "domain": "mightytips.com",
+        "url": "https://www.mightytips.com/bookmakers/georgia-betting-sites/"
+    },
+    {
+        "domain": "cbssports.com",
+        "url": "https://www.cbssports.com/promotions/sports-betting-in-georgia-when-it-will-be-legalized-how-to-bet-online-where-to-get-picks-betting-promos/#:~:text=There%20was%20a%20strong%20effort,Georgia%20sports%20betting%20is%20%3Dunclear."
+    },
+    {
+        "domain": "gamingtoday.com",
+        "url": "https://www.gamingtoday.com/georgia/#:~:text=Georgia%20Sports%20Betting%20FAQs&text=No%2C%20online%20sports%20betting%20is,within%20the%20State%20of%20Georgia."
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/sports-betting-apps"
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/sports-betting-apps"
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/bet365#:~:text=No%2C%20the%20bet365%20Sportsbook%20is,yet%20to%20pass%20any%20legislation."
+    },
+    {
+        "domain": "thesportsgeek.com",
+        "url": "https://www.thesportsgeek.com/sportsbooks/us/georgia/"
+    },
+    {
+        "domain": "gamblingsites.org",
+        "url": "https://www.gamblingsites.org/sports-betting/us/georgia/"
+    },
+    {
+        "domain": "bookmakers.bet",
+        "url": "https://www.bookmakers.bet/43983/betting-sites-georgia/"
+    },
+    {
+        "domain": "onlinesportsbetting.net",
+        "url": "https://www.onlinesportsbetting.net/usa/georgia/"
+    },
+    {
+        "domain": "basketballinsiders.com",
+        "url": "https://www.basketballinsiders.com/ga/"
+    },
+    {
+        "domain": "gaming.net",
+        "url": "https://www.gaming.net/georgia-sports-betting/"
+    },
+    {
+        "domain": "mightytips.com",
+        "url": "https://www.mightytips.com/bookmakers/georgia-betting-sites/"
+    },
+    {
+        "domain": "cbssports.com",
+        "url": "https://www.cbssports.com/promotions/sports-betting-in-georgia-when-it-will-be-legalized-how-to-bet-online-where-to-get-picks-betting-promos/#:~:text=There%20was%20a%20strong%20effort,Georgia%20sports%20betting%20is%20%3Dunclear."
+    },
+    {
+        "domain": "gamingtoday.com",
+        "url": "https://www.gamingtoday.com/georgia/#:~:text=Georgia%20Sports%20Betting%20FAQs&text=No%2C%20online%20sports%20betting%20is,within%20the%20State%20of%20Georgia."
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/sports-betting-apps"
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/sports-betting-apps"
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/bet365#:~:text=No%2C%20the%20bet365%20Sportsbook%20is,yet%20to%20pass%20any%20legislation."
+    },
+    {
+        "domain": "thesportsgeek.com",
+        "url": "https://www.thesportsgeek.com/sportsbooks/us/georgia/"
+    },
+    {
+        "domain": "gamblingsites.org",
+        "url": "https://www.gamblingsites.org/sports-betting/us/georgia/"
+    },
+    {
+        "domain": "bookmakers.bet",
+        "url": "https://www.bookmakers.bet/43983/betting-sites-georgia/"
+    },
+    {
+        "domain": "onlinesportsbetting.net",
+        "url": "https://www.onlinesportsbetting.net/usa/georgia/"
+    },
+    {
+        "domain": "basketballinsiders.com",
+        "url": "https://www.basketballinsiders.com/ga/"
+    },
+    {
+        "domain": "allnigeriasoccer.com",
+        "url": "https://www.allnigeriasoccer.com/read_news.php?nid=46712"
+    },
+    {
+        "domain": "talksport.com",
+        "url": "https://talksport.com/betting/1262504/betting-apps/"
+    },
+    {
+        "domain": "books.google.com.ng",
+        "url": "https://books.google.com.ng/books?id=sCTLH8d-W6sC&pg=PA422&lpg=PA422&dq=sports+betting+sites+in+Georgia&source=bl&ots=zW7wJnWmFk&sig=ACfU3U2GVVgA93ESt0kubgQYSK6wUoKmwA&hl=en&sa=X&ved=2ahUKEwiUq9mJ_7X_AhUyjokEHbgCBGU4eBDoAXoECAMQAw"
+    },
+    {
+        "domain": "gaming.net",
+        "url": "https://www.gaming.net/georgia-sports-betting/"
+    },
+    {
+        "domain": "mightytips.com",
+        "url": "https://www.mightytips.com/bookmakers/georgia-betting-sites/"
+    },
+    {
+        "domain": "cbssports.com",
+        "url": "https://www.cbssports.com/promotions/sports-betting-in-georgia-when-it-will-be-legalized-how-to-bet-online-where-to-get-picks-betting-promos/#:~:text=There%20was%20a%20strong%20effort,Georgia%20sports%20betting%20is%20%3Dunclear."
+    },
+    {
+        "domain": "gamingtoday.com",
+        "url": "https://www.gamingtoday.com/georgia/#:~:text=Georgia%20Sports%20Betting%20FAQs&text=No%2C%20online%20sports%20betting%20is,within%20the%20State%20of%20Georgia."
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/sports-betting-apps"
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/sports-betting-apps"
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/bet365#:~:text=No%2C%20the%20bet365%20Sportsbook%20is,yet%20to%20pass%20any%20legislation."
+    },
+    {
+        "domain": "thesportsgeek.com",
+        "url": "https://www.thesportsgeek.com/sportsbooks/us/georgia/"
+    },
+    {
+        "domain": "gamblingsites.org",
+        "url": "https://www.gamblingsites.org/sports-betting/us/georgia/"
+    },
+    {
+        "domain": "bookmakers.bet",
+        "url": "https://www.bookmakers.bet/43983/betting-sites-georgia/"
+    },
+    {
+        "domain": "onlinesportsbetting.net",
+        "url": "https://www.onlinesportsbetting.net/usa/georgia/"
+    },
+    {
+        "domain": "basketballinsiders.com",
+        "url": "https://www.basketballinsiders.com/ga/"
+    },
+    {
+        "domain": "allnigeriasoccer.com",
+        "url": "https://www.allnigeriasoccer.com/read_news.php?nid=46712"
+    },
+    {
+        "domain": "gaming.net",
+        "url": "https://www.gaming.net/georgia-sports-betting/"
+    },
+    {
+        "domain": "mightytips.com",
+        "url": "https://www.mightytips.com/bookmakers/georgia-betting-sites/"
+    },
+    {
+        "domain": "cbssports.com",
+        "url": "https://www.cbssports.com/promotions/sports-betting-in-georgia-when-it-will-be-legalized-how-to-bet-online-where-to-get-picks-betting-promos/#:~:text=There%20was%20a%20strong%20effort,Georgia%20sports%20betting%20is%20%3Dunclear."
+    },
+    {
+        "domain": "gamingtoday.com",
+        "url": "https://www.gamingtoday.com/georgia/#:~:text=Georgia%20Sports%20Betting%20FAQs&text=No%2C%20online%20sports%20betting%20is,within%20the%20State%20of%20Georgia."
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/sports-betting-apps"
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/sports-betting-apps"
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/bet365#:~:text=No%2C%20the%20bet365%20Sportsbook%20is,yet%20to%20pass%20any%20legislation."
+    },
+    {
+        "domain": "thesportsgeek.com",
+        "url": "https://www.thesportsgeek.com/sportsbooks/us/georgia/"
+    },
+    {
+        "domain": "gamblingsites.org",
+        "url": "https://www.gamblingsites.org/sports-betting/us/georgia/"
+    },
+    {
+        "domain": "bookmakers.bet",
+        "url": "https://www.bookmakers.bet/43983/betting-sites-georgia/"
+    },
+    {
+        "domain": "onlinesportsbetting.net",
+        "url": "https://www.onlinesportsbetting.net/usa/georgia/"
+    },
+    {
+        "domain": "basketballinsiders.com",
+        "url": "https://www.basketballinsiders.com/ga/"
+    },
+    {
+        "domain": "allnigeriasoccer.com",
+        "url": "https://www.allnigeriasoccer.com/read_news.php?nid=46712"
+    },
+    {
+        "domain": "gaming.net",
+        "url": "https://www.gaming.net/georgia-sports-betting/"
+    },
+    {
+        "domain": "mightytips.com",
+        "url": "https://www.mightytips.com/bookmakers/georgia-betting-sites/"
+    },
+    {
+        "domain": "cbssports.com",
+        "url": "https://www.cbssports.com/promotions/sports-betting-in-georgia-when-it-will-be-legalized-how-to-bet-online-where-to-get-picks-betting-promos/#:~:text=There%20was%20a%20strong%20effort,Georgia%20sports%20betting%20is%20%3Dunclear."
+    },
+    {
+        "domain": "gamingtoday.com",
+        "url": "https://www.gamingtoday.com/georgia/#:~:text=Georgia%20Sports%20Betting%20FAQs&text=No%2C%20online%20sports%20betting%20is,within%20the%20State%20of%20Georgia."
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/sports-betting-apps"
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/sports-betting-apps"
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/bet365#:~:text=No%2C%20the%20bet365%20Sportsbook%20is,yet%20to%20pass%20any%20legislation."
+    },
+    {
+        "domain": "thesportsgeek.com",
+        "url": "https://www.thesportsgeek.com/sportsbooks/us/georgia/"
+    },
+    {
+        "domain": "gamblingsites.org",
+        "url": "https://www.gamblingsites.org/sports-betting/us/georgia/"
+    },
+    {
+        "domain": "bookmakers.bet",
+        "url": "https://www.bookmakers.bet/43983/betting-sites-georgia/"
+    },
+    {
+        "domain": "onlinesportsbetting.net",
+        "url": "https://www.onlinesportsbetting.net/usa/georgia/"
+    },
+    {
+        "domain": "basketballinsiders.com",
+        "url": "https://www.basketballinsiders.com/ga/"
+    },
+    {
+        "domain": "allnigeriasoccer.com",
+        "url": "https://www.allnigeriasoccer.com/read_news.php?nid=46712"
+    },
+    {
+        "domain": "gaming.net",
+        "url": "https://www.gaming.net/georgia-sports-betting/"
+    },
+    {
+        "domain": "mightytips.com",
+        "url": "https://www.mightytips.com/bookmakers/georgia-betting-sites/"
+    },
+    {
+        "domain": "cbssports.com",
+        "url": "https://www.cbssports.com/promotions/sports-betting-in-georgia-when-it-will-be-legalized-how-to-bet-online-where-to-get-picks-betting-promos/#:~:text=There%20was%20a%20strong%20effort,Georgia%20sports%20betting%20is%20%3Dunclear."
+    },
+    {
+        "domain": "gamingtoday.com",
+        "url": "https://www.gamingtoday.com/georgia/#:~:text=Georgia%20Sports%20Betting%20FAQs&text=No%2C%20online%20sports%20betting%20is,within%20the%20State%20of%20Georgia."
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/sports-betting-apps"
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/sports-betting-apps"
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/bet365#:~:text=No%2C%20the%20bet365%20Sportsbook%20is,yet%20to%20pass%20any%20legislation."
+    },
+    {
+        "domain": "thesportsgeek.com",
+        "url": "https://www.thesportsgeek.com/sportsbooks/us/georgia/"
+    },
+    {
+        "domain": "gamblingsites.org",
+        "url": "https://www.gamblingsites.org/sports-betting/us/georgia/"
+    },
+    {
+        "domain": "bookmakers.bet",
+        "url": "https://www.bookmakers.bet/43983/betting-sites-georgia/"
+    },
+    {
+        "domain": "onlinesportsbetting.net",
+        "url": "https://www.onlinesportsbetting.net/usa/georgia/"
+    },
+    {
+        "domain": "basketballinsiders.com",
+        "url": "https://www.basketballinsiders.com/ga/"
+    },
+    {
+        "domain": "allnigeriasoccer.com",
+        "url": "https://www.allnigeriasoccer.com/read_news.php?nid=46712"
+    },
+    {
+        "domain": "gaming.net",
+        "url": "https://www.gaming.net/georgia-sports-betting/"
+    },
+    {
+        "domain": "mightytips.com",
+        "url": "https://www.mightytips.com/bookmakers/georgia-betting-sites/"
+    },
+    {
+        "domain": "cbssports.com",
+        "url": "https://www.cbssports.com/promotions/sports-betting-in-georgia-when-it-will-be-legalized-how-to-bet-online-where-to-get-picks-betting-promos/#:~:text=There%20was%20a%20strong%20effort,Georgia%20sports%20betting%20is%20%3Dunclear."
+    },
+    {
+        "domain": "gamingtoday.com",
+        "url": "https://www.gamingtoday.com/georgia/#:~:text=Georgia%20Sports%20Betting%20FAQs&text=No%2C%20online%20sports%20betting%20is,within%20the%20State%20of%20Georgia."
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/sports-betting-apps"
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/sports-betting-apps"
+    },
+    {
+        "domain": "betgeorgia.com",
+        "url": "https://www.betgeorgia.com/bet365#:~:text=No%2C%20the%20bet365%20Sportsbook%20is,yet%20to%20pass%20any%20legislation."
+    },
+    {
+        "domain": "thesportsgeek.com",
+        "url": "https://www.thesportsgeek.com/sportsbooks/us/georgia/"
+    },
+    {
+        "domain": "gamblingsites.org",
+        "url": "https://www.gamblingsites.org/sports-betting/us/georgia/"
+    },
+    {
+        "domain": "bookmakers.bet",
+        "url": "https://www.bookmakers.bet/43983/betting-sites-georgia/"
+    },
+    {
+        "domain": "onlinesportsbetting.net",
+        "url": "https://www.onlinesportsbetting.net/usa/georgia/"
+    },
+    {
+        "domain": "basketballinsiders.com",
+        "url": "https://www.basketballinsiders.com/ga/"
+    },
+    {
+        "domain": "allnigeriasoccer.com",
+        "url": "https://www.allnigeriasoccer.com/read_news.php?nid=46712"
+    }
+]

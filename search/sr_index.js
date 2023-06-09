@@ -68,7 +68,7 @@ const linksArr = []
 let numStart = 29200000;
 
 async function writeToExcelFile(arr) {
-  arr.splice(0, 1)
+  // arr.splice(0, 1)
   arr.map((row) => {
     objects.push({
         domain: row.domain,
@@ -84,7 +84,7 @@ async function writeToExcelFile(arr) {
     })
   })
   // 
-  console.log(objects)
+  // console.log(objects)
 
   await writeXlsxFile(objects, {
       schema,
@@ -94,7 +94,7 @@ async function writeToExcelFile(arr) {
 
 let url = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${searchEngineId}&q=${encodeURIComponent(query)}`;
 
-((numStart) => {
+(numStart) => {
   let count = 0;
 
   function run(){
@@ -144,13 +144,13 @@ let url = `https://www.googleapis.com/customsearch/v1?key=${apiKey}&cx=${searchE
     });
   }
 
-  })
+  }
   // (numStart, limit = 100)
 
   fs.readFile('linksjsonfile.json', (e, d) => {
     // JSON.parse(e)
     let data = JSON.parse(d)
-    console.log(data.length)
+    console.log('lenght ' + data.length)
     
     writeToExcelFile(data)
   });

@@ -12,7 +12,7 @@
     "start": "nodemon ./duplicates/dp_index.js",
     "bruno": "nodemon ./brunoJob/bn_index.js",
     "texas": "nodemon ./texas/tx_index.js",
-    "search": "node ./search/sr_index.js",
+    "search": "nodemon ./search/sr_index.js",
     "test": "nodemon test.js"
   },
   "name": "scserver",
