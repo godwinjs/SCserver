@@ -1,5 +1,6 @@
 const apiKey = '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';
 const endpoint = 'https://api.openai.com/v1/engines/davinci-codex/completions';
+const fetch = require('fetch')
 
 async function getChatResponse(prompt) {
   const requestBody = {
