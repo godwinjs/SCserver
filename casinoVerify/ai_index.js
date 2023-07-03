@@ -5,7 +5,7 @@ async function getChatResponse(prompt) {
   const requestBody = {
     prompt: prompt,
     max_tokens: 50,
-    temperature: 0.7,
+    temperature: 0,
     n: 1, 
     stop: '\n',
   };
