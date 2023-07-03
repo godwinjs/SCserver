@@ -1,12 +1,12 @@
-const apiKey = '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';
-const endpoint = 'https://api.openai.com/v1/engines/davinci-codex/completions';
-const fetch = require('fetch')
+const apiKey = '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';
+const endpoint = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
+// const fetch = require('fetch')
 
 async function getChatResponse(prompt) {
   const requestBody = {
     prompt: prompt,
     max_tokens: 50,
-    temperature: 0,
+    temperature: 0.2,
     n: 1, 
     stop: '\n',
   };
@@ -21,7 +21,7 @@ async function getChatResponse(prompt) {
   });
 
   const data = await response.json();
-  const chatResponse = data.choices[0].text.trim();
+  const chatResponse = data; //.choices[0].text.trim()
   return chatResponse;
 }
 
