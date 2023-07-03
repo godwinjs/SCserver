@@ -13,6 +13,7 @@
     "bruno": "nodemon ./brunoJob/bn_index.js",
     "texas": "nodemon ./texas/tx_index.js",
     "search": "nodemon ./search/sr_index.js",
+    "aiVerify": "nodemon ./aiVerify/ai_index.js",
     "test": "nodemon test.js"
   },
   "name": "scserver",
