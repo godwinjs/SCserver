@@ -4,10 +4,10 @@ const endpoint = 'https://api.openai.com/v1/engines/davinci-codex/completions';
 async function getChatResponse(prompt) {
   const requestBody = {
     prompt: prompt,
-    max_tokens: 50, // Adjust as needed to control the response length
-    temperature: 0.7, // Adjust as needed to control the response randomness
-    n: 1, // Number of responses to generate
-    stop: '\n', // Stop generating tokens at a newline character
+    max_tokens: 50,
+    temperature: 0.7,
+    n: 1, 
+    stop: '\n',
   };
 
   const response = await fetch(endpoint, {
