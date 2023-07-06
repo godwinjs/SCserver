@@ -8,12 +8,14 @@ const schema = [
       value: row => row.domain
   },
   {
-      column: 'visits',
+      column: 'Visits',
       type: String,
       value: row => row.visits
   }
 ]
+
 const linksArr = []
+
 
 async function writeToExcelFile(arr) {
   // arr.splice(0, 1)
@@ -29,3 +31,11 @@ async function writeToExcelFile(arr) {
       filePath: './search/link.xlsx'
   })
 }
+
+  fs.readFile('linksjsonfile.json', (e, d) => {
+    // JSON.parse(e)
+    let data = JSON.parse(d)
+    console.log('lenght ' + data.length)
+    
+    writeToExcelFile(data)
+  });
