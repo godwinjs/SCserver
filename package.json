@@ -14,6 +14,7 @@
     "texas": "nodemon ./texas/tx_index.js",
     "search": "nodemon ./search/sr_index.js",
     "cai": "nodemon ./casinoAiVerify/cai_index.js",
+    "ct": "nodemon ./casinoTraffic/ct_index.js",
     "test": "nodemon test.js"
   },
   "name": "scserver",

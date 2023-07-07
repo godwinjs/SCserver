@@ -1,3 +1,4 @@
+const fs = require('fs');
 const writeXlsxFile = require('write-excel-file/node')
 
 const objects = []
@@ -21,14 +22,14 @@ async function writeToExcelFile(arr) {
   // arr.splice(0, 1)
   arr.map((row) => {
     objects.push({
-        domain: row.domain,
+        domain: row.url,
         visits: row.visits
     })
   })
 
   await writeXlsxFile(objects, {
       schema,
-      filePath: './search/link.xlsx'
+      filePath: './casinoTraffic/siteTraffic.xlsx'
   })
 }
 
