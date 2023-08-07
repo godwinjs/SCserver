@@ -35,6 +35,7 @@ app.get('/url', function (req, res) {
 
         let sheetArr = [];
         let newSheet = null;
+        let editedObj = [];
         //
         const sheets = [1, 2];
         const spouseObjects = []
@@ -48,28 +49,33 @@ app.get('/url', function (req, res) {
         async function writeToExcelFile(arr) {
             // arr.splice(0, 1)
             arr.map((row) => {
-    
+                // console.log(row[7])
     
             spouseObjects.push({
                 category: row[0] == null ? '' : row[0]+'',
                 id: row[1] == null ? '' : row[1]+'',
                 name: row[2] == null ? '' : row[2],
-                section: row[3] == null ? '' : row[3],
-                phoneNumber: row[4] === null ? '' : +row[4],
-                gender:  row[5] == null ? '' : row[5],
-                emailAddress:  row[6] === null ? '' : row[6],
-                status: row[7] == null ? '' : row[7]
+                section: row.section == null ? '' : row.section,
+                gender:  row.gender == null ? '' : row.gender,
+                country:   row.country == null ? '' : row.country,
+                phone: row.phone === null ? 0 : row.phone,
+                email:  row.email === null ? '' : row.email,
+                status: row.status == null ? '' : row.status
             })
+            // console.log(row[6].toString())
+            // if(row.phone == '8022220222'){
+            //     console.log(typeof(row.phone))
+            // }
             ordinaryObjects.push({
-                memberId:  row[0] == null ? '' : row[0]+'',
-                surname:  row[1] == null ? '' : row[1],
-                firstname:  row[2] == null ? '' : row[2],
-                section: row[3] == null ? '' : row[3],
-                gender:  row[4] == null ? '' : row[4],
-                country:   row[5] == null ? '' : row[5],
-                phone:  row[6] === null ? '' : +row[6],
-                email: row[7] === null ? '' : row[7],
-                status:  row[8] == null ? '' : row[8]+''
+                memberId:  row.memberId == null ? '' : row.memberId+'',
+                surname:  row.surname == null ? '' : row.surname,
+                firstname:  row.firstname == null ? '' : row.firstname,
+                section: row.section == null ? '' : row.section,
+                gender:  row.gender == null ? '' : row.gender,
+                country:   row.country == null ? '' : row.country,
+                phone: row.phone === null ? '0' : row.phone,
+                email:  row.email === null ? '' : row.email,
+                status: row.status == null ? '' : row.status
             })
     
             })
@@ -98,14 +104,19 @@ app.get('/url', function (req, res) {
                         value: row => row.section
                     },
                     {
-                        column: 'PHONE NUMBER',
-                        type: Number,
-                        value: row => row.phoneNumber
+                        column: 'COUNTRY',
+                        type: String,
+                        value: row => row.country
                     },
                     {
                         column: 'GENDER',
                         type: String,
                         value: row => row.gender
+                    },
+                    {
+                        column: 'PHONE NUMBER',
+                        type: String,
+                        value: row => row.phoneNumber
                     },
                     {
                         column: 'EMAIL ADDRESS',
@@ -120,7 +131,7 @@ app.get('/url', function (req, res) {
                     ]
                 await writeXlsxFile(spouseObjects, {
                     schema,
-                    filePath: './SpouseMembers.xlsx'
+                    filePath: './brunoJob/SpouseMembers.xlsx'
                 })
             }else{
                 // ORDINARY
@@ -157,7 +168,7 @@ app.get('/url', function (req, res) {
                     },
                     {
                         column: 'PHONE',
-                        type: Number,
+                        type: String,
                         value: row => row.phone
                     },
                     {
@@ -173,7 +184,7 @@ app.get('/url', function (req, res) {
                 ]
                 await writeXlsxFile(ordinaryObjects, {
                     schema,
-                    filePath: './OrdinaryMembers.xlsx'
+                    filePath: './brunoJob/OrdinaryMembers.xlsx'
                 })
             }
 
@@ -192,37 +203,62 @@ app.get('/url', function (req, res) {
             a.map((a_row) => {
     
                 b.map((b_row, b_idx) => {
-                    if(stringsMatch(a_row[1], b_row[1])){
+                    let obj = {
+                        memberId: b_row[0],
+                        surname: b_row[1],
+                        firstname: b_row[2],
+                        section: null,
+                        gender: b_row[3],
+                        country: b_row[4],
+                        phone: `${b_row[5]}`,
+                        email: b_row[6],
+                        status: b_row[7],
+                    }
+                    if(stringsMatch(a_row[1], obj.memberId[1])){
                         if(b_row[1] == null){
                             return;
                         }
-                        if(b_row[3] === null){
-                            b_row[3] = `(${req.query.sport.toUpperCase()})`
+                        if(obj.section === null){
+                            obj.section = `(${req.query.sport.toUpperCase()})`
                         }else{
-                            b_row[3] = b_row[3].toString() + `(${req.query.sport.toUpperCase()})`
+                            obj.section = obj.section.toString() + `(${req.query.sport.toUpperCase()})`
                         }
                         // b_row.push(`(${req.query.sport.toUpperCase()})`)
+                        editedObj.push(obj);
                     }
                 })
             })
         }
         function ordinary(a, b){
+            // console.log([b[0], b[1], b[2]])
             a.map((a_row) => {
     
                 b.map((b_row) => {
-                    if(stringsMatch(a_row[1], b_row[0])){                        
-                    if(b_row[3] === null){
-                        b_row[3] = `(${req.query.sport.toUpperCase()})`
+                    let obj = {
+                        memberId: b_row[0],
+                        surname: b_row[1],
+                        firstname: b_row[2],
+                        section: null,
+                        gender: b_row[3],
+                        country: b_row[4],
+                        phone: `${b_row[5]}`,
+                        email: b_row[6],
+                        status: b_row[7],
+                    }
+                    if(stringsMatch(a_row[1], obj.memberId)){                        
+                    if(obj.section === null){
+                        obj.section = `(${req.query.sport.toUpperCase()})`
                     }else{
-                        b_row[3] = b_row[3].toString() + `(${req.query.sport.toUpperCase()})`
+                        obj.section = obj.section.toString() + `(${req.query.sport.toUpperCase()})`
                     }
                     }
+                    editedObj.push(obj);
                 })
             })
         }
         
         const checkPromise = sheets.map((sheet) => {
-            return readXlsxFile("./BrunoExcel.xlsx", {sheet: sheet});
+            return readXlsxFile("./brunoJob/BrunoExcel.xlsx", {sheet: sheet});
         })
     
         Promise.all(checkPromise).then((rows) => {
@@ -231,16 +267,19 @@ app.get('/url', function (req, res) {
                 sheetArr.push(row)
             })
         }).finally(() => {
-    
+            console.log(sheetArr.length)
             removeHeader(sheetArr[0], sheetArr[1]);
             if(req.query.member === 's'){
+                console.log('s')
                 spouse(sheetArr[0], sheetArr[1])
             }else{
+                console.log('o')
                 ordinary(sheetArr[0], sheetArr[1])
             }
             // 
             console.log('Writing unique entries to excel file...')
-            writeToExcelFile(sheetArr[1]);
+            writeToExcelFile(editedObj);
+        // console.log(editedObj[editedObj.length - 3], editedObj[editedObj.length - 2], editedObj[editedObj.length - 1])
             console.log('All done file ready.')
         });
         
