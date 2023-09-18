@@ -9,7 +9,8 @@
     "write-excel-file": "^1.4.24"
   },
   "scripts": {
-    "start": "nodemon ./duplicates/dp_index.js",
+    "duplicates": "nodemon ./duplicates/dp_index.js",
+    "start": "nodemon ./server.js",
     "bruno": "nodemon ./brunoJob/bn_index.js",
     "texas": "nodemon ./texas/tx_index.js",
     "search": "nodemon ./search/sr_index.js",
