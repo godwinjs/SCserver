@@ -199,6 +199,7 @@ app.get('/url', function (req, res) {
             a.map((a_row) => {
                 
                 b.map((b_row, idx) => {
+                    console.log(': '+b_row[0])
                     // 
                     if(stringsMatch(a_row[1], b_row[0])){      
                         if(b_row[8] === undefined){
